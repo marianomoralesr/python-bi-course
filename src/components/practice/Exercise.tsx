@@ -4,6 +4,7 @@ import { ArrowLeft, Code2, CheckCircle, Trophy, Star } from 'lucide-react';
 import { getExerciseById } from '../../content/exercises';
 import { useProgressStore } from '../../stores/progressStore';
 import { CodePlayground } from './CodePlayground';
+import { reviewCode } from '../../hooks/useClaude';
 import clsx from 'clsx';
 
 export function Exercise() {
@@ -41,10 +42,12 @@ export function Exercise() {
     setShowAIFeedback(true);
     setAIFeedback('Analyzing your code...');
 
-    // Simulate AI review (in production, this would call the Claude API)
-    setTimeout(() => {
-      setAIFeedback(generateSimulatedFeedback(code, exercise.solution));
-    }, 1500);
+    try {
+      const feedback = await reviewCode(code, exercise.instructions.slice(0, 100));
+      setAIFeedback(feedback);
+    } catch {
+      setAIFeedback('**Status**: Review unavailable\n**Tip**: Run your code to test it manually.');
+    }
   };
 
   const difficultyConfig = {
@@ -148,46 +151,4 @@ export function Exercise() {
       )}
     </div>
   );
-}
-
-// Simulated AI feedback generator
-function generateSimulatedFeedback(userCode: string, solution: string): string {
-  const hasBlankSpaces = userCode.includes('____');
-  const codeLength = userCode.split('\n').filter(l => l.trim() && !l.trim().startsWith('#')).length;
-  const hasPrintStatements = userCode.includes('print(');
-  const hasComments = userCode.includes('#');
-
-  let feedback = '';
-
-  if (hasBlankSpaces) {
-    feedback += `**Code Review**\n\n`;
-    feedback += `I notice your code still has some blanks to fill in (____). Here are some tips:\n\n`;
-    feedback += `1. **Look at the comments** - They provide hints about what values to use\n`;
-    feedback += `2. **Check the variable names** - They often suggest what the value should be\n`;
-    feedback += `3. **Use the hints** - Click "Show Hint" for guided help\n\n`;
-    feedback += `Once you fill in the blanks, run the code to see if it works!`;
-  } else {
-    feedback += `**Code Review**\n\n`;
-    feedback += `Great job working on this exercise! Here's my analysis:\n\n`;
-
-    feedback += `**What's Working Well:**\n`;
-    if (hasPrintStatements) {
-      feedback += `- Good use of print statements to display output\n`;
-    }
-    if (hasComments) {
-      feedback += `- Nice code documentation with comments\n`;
-    }
-    if (codeLength > 5) {
-      feedback += `- Your code is well-structured and organized\n`;
-    }
-
-    feedback += `\n**Suggestions for Improvement:**\n`;
-    feedback += `- Consider adding more descriptive variable names\n`;
-    feedback += `- You could add error handling for edge cases\n`;
-    feedback += `- Try using f-strings for cleaner string formatting\n\n`;
-
-    feedback += `**Rating:** Good Work! Keep practicing to master these concepts.`;
-  }
-
-  return feedback;
 }

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Editor, { OnMount } from '@monaco-editor/react';
 import {
   Play,
@@ -11,9 +11,11 @@ import {
   Terminal,
   Loader2,
   Copy,
-  Check
+  Check,
+  AlertCircle
 } from 'lucide-react';
 import clsx from 'clsx';
+import { runPythonWithTimeout, initPyodide, isPyodideReady } from '../../services/pythonRunner';
 
 interface CodePlaygroundProps {
   initialCode: string;
@@ -34,32 +36,61 @@ export function CodePlayground({
 }: CodePlaygroundProps) {
   const [code, setCode] = useState(initialCode);
   const [output, setOutput] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const [isRunning, setIsRunning] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pyodideReady, setPyodideReady] = useState(isPyodideReady());
   const [showSolution, setShowSolution] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [visibleHints, setVisibleHints] = useState(0);
   const [copied, setCopied] = useState(false);
   const editorRef = useRef<any>(null);
 
+  // Preload Pyodide when component mounts
+  useEffect(() => {
+    if (!pyodideReady) {
+      setIsLoading(true);
+      initPyodide()
+        .then(() => {
+          setPyodideReady(true);
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          console.error('Failed to load Pyodide:', err);
+          setIsLoading(false);
+        });
+    }
+  }, [pyodideReady]);
+
   const handleEditorMount: OnMount = (editor) => {
     editorRef.current = editor;
   };
 
-  const handleRun = () => {
+  const handleRun = async () => {
     setIsRunning(true);
-    setOutput('Running...\n');
+    setOutput('');
+    setError('');
 
-    // Simulate Python execution
-    setTimeout(() => {
-      const result = simulatePythonExecution(code);
-      setOutput(result);
+    try {
+      const result = await runPythonWithTimeout(code, 10000);
+
+      if (result.error) {
+        setError(result.error);
+        setOutput(result.output || '');
+      } else {
+        setOutput(result.output || '(No output)');
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Execution failed');
+    } finally {
       setIsRunning(false);
-    }, 800);
+    }
   };
 
   const handleReset = () => {
     setCode(initialCode);
     setOutput('');
+    setError('');
     setShowSolution(false);
   };
 
@@ -160,13 +191,18 @@ export function CodePlayground({
       <div className="flex flex-wrap items-center gap-2 p-4 bg-surface-hover/50 border-b border-border/50">
         <button
           onClick={handleRun}
-          disabled={isRunning}
+          disabled={isRunning || isLoading}
           className={clsx(
             'btn flex items-center gap-2',
-            isRunning ? 'btn-secondary' : 'btn-success'
+            isRunning || isLoading ? 'btn-secondary' : 'btn-success'
           )}
         >
-          {isRunning ? (
+          {isLoading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Loading Python...
+            </>
+          ) : isRunning ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin" />
               Running...
@@ -259,24 +295,35 @@ export function CodePlayground({
       {/* Output panel */}
       <div className="bg-black/80">
         <div className="flex items-center justify-between px-4 py-2 border-b border-border/30">
-          <span className="text-xs font-medium text-text-muted uppercase tracking-wider flex items-center gap-2">
-            <Terminal className="w-4 h-4" />
-            Output
-          </span>
-          {output && !isRunning && (
-            <span className="text-xs text-success flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3" />
-              Executed
-            </span>
+          {error ? (
+            <>
+              <span className="text-xs font-medium text-error uppercase tracking-wider flex items-center gap-2">
+                <AlertCircle className="w-4 h-4" />
+                Error
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="text-xs font-medium text-text-muted uppercase tracking-wider flex items-center gap-2">
+                <Terminal className="w-4 h-4" />
+                Output
+              </span>
+              {output && !isRunning && (
+                <span className="text-xs text-success flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Executed
+                </span>
+              )}
+            </>
           )}
         </div>
         <pre
           className={clsx(
-            'p-4 text-sm font-mono min-h-[100px] max-h-[200px] overflow-auto',
-            output ? 'text-success' : 'text-text-muted'
+            'p-4 text-sm font-mono min-h-[100px] max-h-[200px] overflow-auto whitespace-pre-wrap',
+            error ? 'text-error' : output ? 'text-success' : 'text-text-muted'
           )}
         >
-          {output || '// Output will appear here after running your code'}
+          {error || output || '// Output will appear here after running your code'}
         </pre>
       </div>
     </div>

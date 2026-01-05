@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout';
 import { ProgressDashboard } from './components/progress';
@@ -6,10 +7,25 @@ import { Quiz } from './components/quiz';
 import { Exercise } from './components/practice';
 import { AskClaude } from './components/ai';
 import { useSettingsStore } from './stores/settingsStore';
-import { BookOpen } from 'lucide-react';
+import { useProgressStore } from './stores/progressStore';
+import { isSupabaseConfigured } from './lib/supabase';
+import { BookOpen, Cloud, CloudOff } from 'lucide-react';
 import './index.css';
 
 function App() {
+  const { loadFromCloud, isSyncing, lastSyncedAt } = useProgressStore();
+
+  // Load progress from cloud on app startup
+  useEffect(() => {
+    if (isSupabaseConfigured()) {
+      loadFromCloud().then((success) => {
+        if (success) {
+          console.log('Progress loaded from cloud');
+        }
+      });
+    }
+  }, [loadFromCloud]);
+
   return (
     <BrowserRouter>
       <Routes>

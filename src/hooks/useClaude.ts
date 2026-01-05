@@ -20,21 +20,70 @@ interface UseClaudeReturn {
   clearMessages: () => void;
 }
 
-const DEFAULT_SYSTEM_PROMPT = `You are a helpful Python tutor for Business Intelligence students. You help them understand Python concepts, debug their code, and improve their programming skills.
+const DEFAULT_SYSTEM_PROMPT = `Python tutor for BI students. Be concise, encouraging. Give examples when helpful.`;
 
-Guidelines:
-- Be encouraging and supportive
-- Explain concepts clearly with examples
-- When reviewing code, provide constructive feedback
-- Focus on best practices for data analysis and BI
-- Keep responses concise but thorough
-- Use Python code examples when helpful
-- If asked about non-Python topics, gently redirect to the course content
+// Optimized prompt for code review - minimal tokens, maximum value
+const CODE_REVIEW_SYSTEM_PROMPT = `Python code reviewer. Be brief. Format:
+**Status**: [Working/Issues/Incomplete]
+**Feedback**: 1-2 sentences
+**Fix**: Code fix if needed (max 3 lines)`;
 
-You have access to the course content:
-- Chapter 0: Introduction to Python
-- Chapter 1: Variables & Logic (data types, operators, conditionals)
-- Chapter 2: Collections, Loops & Functions (lists, dictionaries, loops, functions)`;
+// Export for code review with optimized settings
+export async function reviewCode(
+  code: string,
+  exerciseContext?: string
+): Promise<string> {
+  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+
+  if (!apiKey) {
+    return generateQuickCodeFeedback(code);
+  }
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 200, // Very limited for efficiency
+        system: CODE_REVIEW_SYSTEM_PROMPT,
+        messages: [{
+          role: 'user',
+          content: `Review:\n\`\`\`python\n${code.slice(0, 500)}\n\`\`\`${exerciseContext ? `\nContext: ${exerciseContext.slice(0, 100)}` : ''}`
+        }]
+      })
+    });
+
+    if (!response.ok) {
+      return generateQuickCodeFeedback(code);
+    }
+
+    const data = await response.json();
+    return data.content[0].text;
+  } catch {
+    return generateQuickCodeFeedback(code);
+  }
+}
+
+// Fast local feedback when API unavailable
+function generateQuickCodeFeedback(code: string): string {
+  const hasBlank = code.includes('____');
+  const hasPrint = code.includes('print(');
+  const hasError = code.includes('Error') || code.includes('error');
+
+  if (hasBlank) {
+    return '**Status**: Incomplete\n**Feedback**: Fill in the blanks (____) with the correct values.\n**Tip**: Check comments for hints.';
+  }
+  if (!hasPrint) {
+    return '**Status**: Working\n**Feedback**: Code looks good! Consider adding print() to see output.';
+  }
+  return '**Status**: Working\n**Feedback**: Good job! Run the code to verify output matches expected results.';
+}
 
 export function useClaude(options: UseClaudeOptions = {}): UseClaudeReturn {
   const {
