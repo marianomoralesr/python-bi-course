@@ -115,7 +115,9 @@ main() {
     # Load environment variables if .env exists
     if [ -f .env ]; then
         echo -e "${YELLOW}Loading environment variables from .env${NC}"
-        export $(cat .env | grep -v '^#' | xargs)
+        set -a
+        source .env
+        set +a
     fi
 
     check_requirements
@@ -144,7 +146,9 @@ show_help() {
 case "$1" in
     --build-only)
         if [ -f .env ]; then
-            export $(cat .env | grep -v '^#' | xargs)
+            set -a
+            source .env
+            set +a
         fi
         check_requirements
         build_image
