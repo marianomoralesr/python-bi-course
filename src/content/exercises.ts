@@ -19,15 +19,30 @@ export const exercises: Exercise[] = [
   {
     id: 'chapter-0-exercise-2',
     chapterId: 0,
-    title: 'Comments Practice',
+    title: 'Comments and Print Practice',
     difficulty: 'easy',
-    instructions: 'Practice writing comments in Python.\n\n1. Add a single-line comment explaining what the code does\n2. Add an inline comment after a print statement\n3. Create a multi-line comment describing the program',
-    initialCode: '# TODO: Add a comment explaining this program\n\nprint("Python is fun!")  # TODO: Add inline comment\n\n# TODO: Create a multi-line comment below\n\nprint("Comments help explain code!")',
-    solution: '# This program demonstrates Python comments\n\nprint("Python is fun!")  # This prints a message\n\n"""\nThis is a multi-line comment.\nIt can span multiple lines.\nGreat for longer explanations.\n"""\n\nprint("Comments help explain code!")',
+    instructions: 'Practice writing comments and using print() with different options.\n\n1. Add a comment explaining what the code does\n2. Print three items on the same line using sep\n3. Print two words without a newline between them using end',
+    initialCode: '# TODO: Add a comment explaining this program\n\n# TODO: Print "A", "B", "C" separated by dashes\nprint("A", "B", "C", sep=____)\n\n# TODO: Print "Hello" and "World" on the same line\nprint("Hello", end=____)\nprint("World")',
+    solution: '# This program demonstrates print options\n\n# Print "A", "B", "C" separated by dashes\nprint("A", "B", "C", sep="-")\n\n# Print "Hello" and "World" on the same line\nprint("Hello", end=" ")\nprint("World")',
     hints: [
-      'Single-line comments start with #',
-      'Inline comments go after code on the same line',
-      'Multi-line comments use triple quotes: """..."""'
+      'Comments start with #',
+      'sep changes what goes between items: sep="-" gives A-B-C',
+      'end changes what goes at the end: end=" " keeps on same line'
+    ]
+  },
+  {
+    id: 'chapter-0-exercise-3',
+    chapterId: 0,
+    title: 'Fix the Syntax Errors',
+    difficulty: 'easy',
+    instructions: 'This code has several syntax errors. Fix each one!\n\nCommon errors to look for:\n- Case sensitivity (Print vs print)\n- Missing colons after if\n- Mismatched quotes\n- Type conversion issues',
+    initialCode: '# Fix the errors in this code!\n\n# Error 1: Case sensitivity\nPrint("Hello World")\n\n# Error 2: Missing colon\nx = 10\nif x > 5\n    print("x is big")\n\n# Error 3: Mismatched quotes\nmessage = "Welcome to Python\'\n\n# Error 4: Cannot concatenate string and int\nage = 25\nprint("I am " + age + " years old")',
+    solution: '# Fixed code!\n\n# Error 1: Fixed - print is lowercase\nprint("Hello World")\n\n# Error 2: Fixed - added colon after if\nx = 10\nif x > 5:\n    print("x is big")\n\n# Error 3: Fixed - matching quotes\nmessage = "Welcome to Python"\n\n# Error 4: Fixed - convert int to string\nage = 25\nprint("I am " + str(age) + " years old")',
+    hints: [
+      'Python built-in functions are lowercase: print(), not Print()',
+      'if statements need a colon at the end: if condition:',
+      'Quotes must match: "text" or \'text\', not "text\'',
+      'Use str() to convert numbers to strings for concatenation'
     ]
   },
 
@@ -63,6 +78,21 @@ export const exercises: Exercise[] = [
     ]
   },
   {
+    id: 'chapter-1-strings-exercise',
+    chapterId: 1,
+    title: 'String Manipulation',
+    difficulty: 'medium',
+    instructions: 'Practice string operations used in data cleaning:\n\n1. Clean up a messy name (strip whitespace, title case)\n2. Extract the domain from an email address\n3. Format a phone number\n4. Create a customer ID from name parts',
+    initialCode: '# String Manipulation Exercise\n\n# 1. Clean up messy name\nmessy_name = "   john DOE   "\n# TODO: Strip whitespace and convert to title case\nclean_name = messy_name.____().____\nprint("Clean name:", clean_name)\n\n# 2. Extract domain from email\nemail = "user@company.com"\n# TODO: Find the @ and slice to get domain\nat_position = email.____("@")\ndomain = email[____:]  # Slice from @ to end\nprint("Domain:", domain)\n\n# 3. Format phone number from digits\ndigits = "5551234567"\n# TODO: Format as (555) 123-4567 using slicing\nformatted_phone = f"({digits[____]}) {digits[____]}-{digits[____]}"\nprint("Phone:", formatted_phone)\n\n# 4. Create customer ID\nfirst = "Alice"\nlast = "Smith"\nyear = 2024\n# TODO: Create ID like "SMI-ALI-2024" (first 3 of each, uppercase)\ncustomer_id = f"{last[:____].____()}-{first[:____].____()}-{year}"\nprint("Customer ID:", customer_id)',
+    solution: '# String Manipulation Exercise\n\n# 1. Clean up messy name\nmessy_name = "   john DOE   "\n# Strip whitespace and convert to title case\nclean_name = messy_name.strip().title()\nprint("Clean name:", clean_name)\n\n# 2. Extract domain from email\nemail = "user@company.com"\n# Find the @ and slice to get domain\nat_position = email.find("@")\ndomain = email[at_position + 1:]  # Slice from after @ to end\nprint("Domain:", domain)\n\n# 3. Format phone number from digits\ndigits = "5551234567"\n# Format as (555) 123-4567 using slicing\nformatted_phone = f"({digits[0:3]}) {digits[3:6]}-{digits[6:10]}"\nprint("Phone:", formatted_phone)\n\n# 4. Create customer ID\nfirst = "Alice"\nlast = "Smith"\nyear = 2024\n# Create ID like "SMI-ALI-2024" (first 3 of each, uppercase)\ncustomer_id = f"{last[:3].upper()}-{first[:3].upper()}-{year}"\nprint("Customer ID:", customer_id)',
+    hints: [
+      'strip() removes whitespace, title() capitalizes first letters',
+      'find() returns the index where a substring is found',
+      'Slicing: string[start:end] extracts characters',
+      'upper() converts to uppercase'
+    ]
+  },
+  {
     id: 'chapter-1-operators-exercise',
     chapterId: 1,
     title: 'Financial Calculator',
@@ -78,13 +108,13 @@ export const exercises: Exercise[] = [
     ]
   },
   {
-    id: 'chapter-1-exercise-1',
+    id: 'chapter-1-conditionals-exercise',
     chapterId: 1,
-    title: 'Sales Performance Calculator',
+    title: 'Sales Performance Evaluator',
     difficulty: 'medium',
-    instructions: 'Create a sales performance calculator that:\n1. Takes sales amount and target as inputs\n2. Calculates the percentage of target achieved\n3. Determines the performance tier (Exceptional, Excellent, Good, Needs Improvement)\n4. Calculates the bonus based on the tier\n\nComplete the code below to make it work!',
-    initialCode: '# Sales Performance Calculator\n# TODO: Set the sales and target values\nsales = ____  # Try 85000\ntarget = ____  # Try 70000\n\n# TODO: Calculate percentage achieved\npercentage = (____) * 100\n\n# TODO: Determine performance tier and bonus rate\n# Exceptional: >= 120% -> 15% bonus\n# Excellent: >= 100% -> 10% bonus\n# Good: >= 80% -> 5% bonus\n# Needs Improvement: < 80% -> 0% bonus\n\nif percentage >= ____:\n    tier = "Exceptional"\n    bonus_rate = ____\nelif percentage >= ____:\n    tier = "Excellent"\n    bonus_rate = ____\nelif percentage >= ____:\n    tier = "Good"\n    bonus_rate = ____\nelse:\n    tier = "Needs Improvement"\n    bonus_rate = ____\n\n# Calculate bonus amount\nbonus = sales * bonus_rate\n\n# Print results\nprint("Sales:", sales)\nprint("Target:", target)\nprint("Achievement:", percentage, "%")\nprint("Performance Tier:", tier)\nprint("Bonus:", bonus)',
-    solution: '# Sales Performance Calculator\n# Set the sales and target values\nsales = 85000\ntarget = 70000\n\n# Calculate percentage achieved\npercentage = (sales / target) * 100\n\n# Determine performance tier and bonus rate\nif percentage >= 120:\n    tier = "Exceptional"\n    bonus_rate = 0.15\nelif percentage >= 100:\n    tier = "Excellent"\n    bonus_rate = 0.10\nelif percentage >= 80:\n    tier = "Good"\n    bonus_rate = 0.05\nelse:\n    tier = "Needs Improvement"\n    bonus_rate = 0\n\n# Calculate bonus amount\nbonus = sales * bonus_rate\n\n# Print results\nprint("Sales:", sales)\nprint("Target:", target)\nprint("Achievement:", percentage, "%")\nprint("Performance Tier:", tier)\nprint("Bonus:", bonus)',
+    instructions: 'Create a sales performance evaluator that:\n1. Takes sales amount and target as inputs\n2. Calculates the percentage of target achieved\n3. Determines the performance tier (Exceptional, Excellent, Good, Needs Improvement)\n4. Calculates the bonus based on the tier\n\nComplete the code below!',
+    initialCode: '# Sales Performance Evaluator\n\n# TODO: Set the sales and target values\nsales = ____  # Try 85000\ntarget = ____  # Try 70000\n\n# TODO: Calculate percentage achieved\npercentage = (____) * 100\n\n# TODO: Determine performance tier and bonus rate\n# Exceptional: >= 120% -> 15% bonus\n# Excellent: >= 100% -> 10% bonus\n# Good: >= 80% -> 5% bonus\n# Needs Improvement: < 80% -> 0% bonus\n\nif percentage >= ____:\n    tier = "Exceptional"\n    bonus_rate = ____\nelif percentage >= ____:\n    tier = "Excellent"\n    bonus_rate = ____\nelif percentage >= ____:\n    tier = "Good"\n    bonus_rate = ____\nelse:\n    tier = "Needs Improvement"\n    bonus_rate = ____\n\n# Calculate bonus amount\nbonus = sales * bonus_rate\n\n# Print results\nprint("Sales:", sales)\nprint("Target:", target)\nprint("Achievement:", percentage, "%")\nprint("Performance Tier:", tier)\nprint("Bonus:", bonus)',
+    solution: '# Sales Performance Evaluator\n\n# Set the sales and target values\nsales = 85000\ntarget = 70000\n\n# Calculate percentage achieved\npercentage = (sales / target) * 100\n\n# Determine performance tier and bonus rate\nif percentage >= 120:\n    tier = "Exceptional"\n    bonus_rate = 0.15\nelif percentage >= 100:\n    tier = "Excellent"\n    bonus_rate = 0.10\nelif percentage >= 80:\n    tier = "Good"\n    bonus_rate = 0.05\nelse:\n    tier = "Needs Improvement"\n    bonus_rate = 0\n\n# Calculate bonus amount\nbonus = sales * bonus_rate\n\n# Print results\nprint("Sales:", sales)\nprint("Target:", target)\nprint("Achievement:", percentage, "%")\nprint("Performance Tier:", tier)\nprint("Bonus:", bonus)',
     hints: [
       'For the percentage calculation, divide sales by target and multiply by 100',
       'Use 120, 100, and 80 as the percentage thresholds',
@@ -107,6 +137,21 @@ export const exercises: Exercise[] = [
       'Use max() for highest, min() for lowest',
       'append() adds to the end of a list',
       'List comprehension: [item for item in list if condition]'
+    ]
+  },
+  {
+    id: 'chapter-2-tuples-sets-exercise',
+    chapterId: 2,
+    title: 'Tuples and Sets Practice',
+    difficulty: 'medium',
+    instructions: 'Practice with tuples and sets:\n\n1. Create a tuple for product data (can\'t be changed)\n2. Unpack tuple values into variables\n3. Use sets to find unique customers\n4. Find customers who bought in both periods',
+    initialCode: '# Tuples and Sets Practice\n\n# 1. Create a product tuple: (name, price, category)\nproduct = (____)\nprint("Product tuple:", product)\n\n# 2. Unpack the tuple into variables\nname, price, category = ____\nprint(f"Name: {name}, Price: ${price}, Category: {category}")\n\n# 3. Remove duplicates from customer list using set\nall_purchases = ["Alice", "Bob", "Alice", "Carol", "Bob", "Alice"]\nunique_customers = ____(all_purchases)\nprint("Unique customers:", unique_customers)\nprint("Total unique:", len(unique_customers))\n\n# 4. Find common customers (intersection)\nq1_customers = {"Alice", "Bob", "Carol"}\nq2_customers = {"Bob", "Carol", "David", "Eve"}\n\n# TODO: Find customers in both quarters\nreturning_customers = q1_customers ____ q2_customers\nprint("Returning customers:", returning_customers)\n\n# TODO: Find new customers in Q2\nnew_customers = q2_customers ____ q1_customers\nprint("New in Q2:", new_customers)',
+    solution: '# Tuples and Sets Practice\n\n# 1. Create a product tuple: (name, price, category)\nproduct = ("Widget Pro", 49.99, "Electronics")\nprint("Product tuple:", product)\n\n# 2. Unpack the tuple into variables\nname, price, category = product\nprint(f"Name: {name}, Price: ${price}, Category: {category}")\n\n# 3. Remove duplicates from customer list using set\nall_purchases = ["Alice", "Bob", "Alice", "Carol", "Bob", "Alice"]\nunique_customers = set(all_purchases)\nprint("Unique customers:", unique_customers)\nprint("Total unique:", len(unique_customers))\n\n# 4. Find common customers (intersection)\nq1_customers = {"Alice", "Bob", "Carol"}\nq2_customers = {"Bob", "Carol", "David", "Eve"}\n\n# Find customers in both quarters\nreturning_customers = q1_customers & q2_customers\nprint("Returning customers:", returning_customers)\n\n# Find new customers in Q2\nnew_customers = q2_customers - q1_customers\nprint("New in Q2:", new_customers)',
+    hints: [
+      'Tuples use parentheses: (item1, item2, item3)',
+      'Unpack by assigning: a, b, c = tuple',
+      'set() converts a list to a set (removes duplicates)',
+      '& is intersection (in both), - is difference (in first but not second)'
     ]
   },
   {
@@ -140,11 +185,41 @@ export const exercises: Exercise[] = [
     ]
   },
   {
+    id: 'chapter-2-comprehensions-exercise',
+    chapterId: 2,
+    title: 'Data Transformation with Comprehensions',
+    difficulty: 'medium',
+    instructions: 'Use list and dictionary comprehensions to transform data:\n\n1. Convert sales to thousands\n2. Filter for high performers only\n3. Create a dictionary of status by region\n4. Calculate bonuses with conditional comprehension',
+    initialCode: '# Data Transformation with Comprehensions\n\nsales_data = [45000, 52000, 38000, 61000, 55000]\nregions = ["North", "South", "East", "West", "Central"]\ntarget = 50000\n\n# 1. Convert all sales to thousands (divide by 1000)\n# Example: 45000 -> 45.0\nsales_in_k = [____ for s in sales_data]\nprint("Sales in thousands:", sales_in_k)\n\n# 2. Filter only sales >= target\nhigh_sales = [s for s in sales_data if ____]\nprint("High performers:", high_sales)\n\n# 3. Create dict {region: sales}\nregion_sales = {____: ____ for r, s in zip(regions, sales_data)}\nprint("Region dict:", region_sales)\n\n# 4. Categorize: "High" if >= target, else "Low"\ncategories = [____ if s >= target ____ for s in sales_data]\nprint("Categories:", categories)\n\n# 5. Bonus dict: 10% if >= target, 5% otherwise  \nbonuses = {r: ____ if s >= target else ____ \n           for r, s in zip(regions, sales_data)}\nprint("Bonuses:", bonuses)',
+    solution: '# Data Transformation with Comprehensions\n\nsales_data = [45000, 52000, 38000, 61000, 55000]\nregions = ["North", "South", "East", "West", "Central"]\ntarget = 50000\n\n# 1. Convert all sales to thousands (divide by 1000)\nsales_in_k = [s / 1000 for s in sales_data]\nprint("Sales in thousands:", sales_in_k)\n\n# 2. Filter only sales >= target\nhigh_sales = [s for s in sales_data if s >= target]\nprint("High performers:", high_sales)\n\n# 3. Create dict {region: sales}\nregion_sales = {r: s for r, s in zip(regions, sales_data)}\nprint("Region dict:", region_sales)\n\n# 4. Categorize: "High" if >= target, else "Low"\ncategories = ["High" if s >= target else "Low" for s in sales_data]\nprint("Categories:", categories)\n\n# 5. Bonus dict: 10% if >= target, 5% otherwise  \nbonuses = {r: s * 0.10 if s >= target else s * 0.05 \n           for r, s in zip(regions, sales_data)}\nprint("Bonuses:", bonuses)',
+    hints: [
+      'Basic: [expression for item in list]',
+      'Filter: [item for item in list if condition]',
+      'if-else: [A if condition else B for item in list]',
+      'Dict: {key: value for k, v in items}'
+    ]
+  },
+  {
+    id: 'chapter-2-functions-exercise',
+    chapterId: 2,
+    title: 'Build Sales Analytics Functions',
+    difficulty: 'medium',
+    instructions: 'Build a set of reusable analytics functions:\n\n1. calculate_statistics(): returns total, avg, max, min\n2. get_top_performers(): returns top N items\n3. calculate_growth(): percentage change between two values\n4. Test all functions with sample data',
+    initialCode: '# Sales Analytics Functions\n\n# Sample data\nmonthly_sales = [45000, 52000, 48000, 61000, 55000, 58000]\n\n# 1. Calculate statistics function\ndef calculate_statistics(data):\n    """Return total, average, max, min as a tuple."""\n    total = ____(data)\n    average = total / ____(data)\n    maximum = ____(data)\n    minimum = ____(data)\n    return ____, ____, ____, ____\n\n# 2. Get top N performers\ndef get_top_performers(data, n=3):\n    """Return top n values from the data."""\n    sorted_data = sorted(data, reverse=____)\n    return sorted_data[:____]\n\n# 3. Calculate growth rate\ndef calculate_growth(current, previous):\n    """Calculate percentage growth."""\n    if previous == 0:\n        return 0\n    return ((current - ____) / ____) * 100\n\n# Test the functions\nprint("=== Statistics ===\")\ntotal, avg, high, low = calculate_statistics(monthly_sales)\nprint(f"Total: ${total:,}")\nprint(f"Average: ${avg:,.2f}")\nprint(f"High: ${high:,}, Low: ${low:,}")\n\nprint("\\n=== Top 3 Months ===\")\ntop_3 = get_top_performers(monthly_sales, 3)\nprint("Top performers:", top_3)\n\nprint("\\n=== Growth Rate ===\")\ngrowth = calculate_growth(58000, 45000)\nprint(f"Growth from first to last: {growth:.1f}%")',
+    solution: '# Sales Analytics Functions\n\n# Sample data\nmonthly_sales = [45000, 52000, 48000, 61000, 55000, 58000]\n\n# 1. Calculate statistics function\ndef calculate_statistics(data):\n    """Return total, average, max, min as a tuple."""\n    total = sum(data)\n    average = total / len(data)\n    maximum = max(data)\n    minimum = min(data)\n    return total, average, maximum, minimum\n\n# 2. Get top N performers\ndef get_top_performers(data, n=3):\n    """Return top n values from the data."""\n    sorted_data = sorted(data, reverse=True)\n    return sorted_data[:n]\n\n# 3. Calculate growth rate\ndef calculate_growth(current, previous):\n    """Calculate percentage growth."""\n    if previous == 0:\n        return 0\n    return ((current - previous) / previous) * 100\n\n# Test the functions\nprint("=== Statistics ===\")\ntotal, avg, high, low = calculate_statistics(monthly_sales)\nprint(f"Total: ${total:,}")\nprint(f"Average: ${avg:,.2f}")\nprint(f"High: ${high:,}, Low: ${low:,}")\n\nprint("\\n=== Top 3 Months ===\")\ntop_3 = get_top_performers(monthly_sales, 3)\nprint("Top performers:", top_3)\n\nprint("\\n=== Growth Rate ===\")\ngrowth = calculate_growth(58000, 45000)\nprint(f"Growth from first to last: {growth:.1f}%")',
+    hints: [
+      'sum(), len(), max(), min() are built-in functions',
+      'sorted(list, reverse=True) sorts descending',
+      'Use slicing [:n] to get first n items',
+      'Growth = (current - previous) / previous * 100'
+    ]
+  },
+  {
     id: 'chapter-2-exercise-1',
     chapterId: 2,
-    title: 'Sales Analytics Module',
-    difficulty: 'medium',
-    instructions: 'Build a sales analytics module with functions that:\n1. Calculate monthly statistics (total, average, max, min)\n2. Identify top performing months\n3. Calculate month-over-month growth rates\n4. Generate a summary report\n\nComplete the functions below!',
+    title: 'Sales Analytics Module (Advanced)',
+    difficulty: 'hard',
+    instructions: 'Build a comprehensive sales analytics module with functions that:\n1. Calculate monthly statistics (total, average, max, min)\n2. Identify top performing months\n3. Calculate month-over-month growth rates\n4. Generate a summary report\n\nComplete the functions below!',
     initialCode: '# Sales Analytics Module\n\nmonthly_sales = [45000, 52000, 48000, 61000, 55000, 58000,\n                 62000, 59000, 65000, 71000, 68000, 75000]\n\nmonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",\n          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]\n\ndef calculate_statistics(sales):\n    """Calculate basic statistics for sales data."""\n    total = ____(sales)\n    average = total / ____(sales)\n    maximum = ____(sales)\n    minimum = ____(sales)\n    return total, average, maximum, minimum\n\ndef get_top_months(sales, months, n=3):\n    """Return the top n performing months."""\n    paired = list(zip(months, ____))\n    sorted_pairs = sorted(paired, key=lambda x: x[1], reverse=____)\n    return sorted_pairs[:____]\n\ndef calculate_growth_rates(sales):\n    """Calculate month-over-month growth rates."""\n    rates = []\n    for i in range(1, len(sales)):\n        rate = ((sales[i] - sales[____]) / sales[____]) * 100\n        rates.append(round(rate, 1))\n    return rates\n\n# Test the functions\ntotal, avg, high, low = calculate_statistics(monthly_sales)\nprint("Total:", total)\nprint("Average:", round(avg, 2))\nprint("Highest:", high)\nprint("Lowest:", low)\n\nprint("\\nTop 3 Months:")\nfor month, sales in get_top_months(monthly_sales, months, 3):\n    print(" ", month, ":", sales)',
     solution: '# Sales Analytics Module\n\nmonthly_sales = [45000, 52000, 48000, 61000, 55000, 58000,\n                 62000, 59000, 65000, 71000, 68000, 75000]\n\nmonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",\n          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]\n\ndef calculate_statistics(sales):\n    """Calculate basic statistics for sales data."""\n    total = sum(sales)\n    average = total / len(sales)\n    maximum = max(sales)\n    minimum = min(sales)\n    return total, average, maximum, minimum\n\ndef get_top_months(sales, months, n=3):\n    """Return the top n performing months."""\n    paired = list(zip(months, sales))\n    sorted_pairs = sorted(paired, key=lambda x: x[1], reverse=True)\n    return sorted_pairs[:n]\n\ndef calculate_growth_rates(sales):\n    """Calculate month-over-month growth rates."""\n    rates = []\n    for i in range(1, len(sales)):\n        rate = ((sales[i] - sales[i-1]) / sales[i-1]) * 100\n        rates.append(round(rate, 1))\n    return rates\n\n# Test the functions\ntotal, avg, high, low = calculate_statistics(monthly_sales)\nprint("Total:", total)\nprint("Average:", round(avg, 2))\nprint("Highest:", high)\nprint("Lowest:", low)\n\nprint("\\nTop 3 Months:")\nfor month, sales in get_top_months(monthly_sales, months, 3):\n    print(" ", month, ":", sales)',
     hints: [
@@ -152,21 +227,6 @@ export const exercises: Exercise[] = [
       'For get_top_months: zip(months, sales) pairs them together',
       'For growth rates: access current month with sales[i] and previous with sales[i-1]',
       'The lambda function key=lambda x: x[1] sorts by the second element'
-    ]
-  },
-  {
-    id: 'chapter-2-exercise-2',
-    chapterId: 2,
-    title: 'Customer Data Processor',
-    difficulty: 'medium',
-    instructions: 'Create a customer data processor that:\n1. Stores customer information in dictionaries\n2. Segments customers by their purchase history\n3. Calculates customer lifetime value (CLV)\n\nThis exercise combines dictionaries, loops, and functions!',
-    initialCode: '# Customer Data Processor\n\ncustomers = [\n    {"id": "C001", "name": "Alice", "purchases": 15000, "months": 24},\n    {"id": "C002", "name": "Bob", "purchases": 8500, "months": 12},\n    {"id": "C003", "name": "Carol", "purchases": 3200, "months": 6},\n]\n\ndef segment_customer(purchases, months):\n    """Determine customer tier based on purchases and tenure."""\n    # Platinum: purchases >= 10000 AND months >= 12 -> 20% discount\n    # Gold: purchases >= 5000 OR months >= 6 -> 10% discount\n    # Standard: all others -> 5% discount\n    \n    if purchases >= ____ and months >= ____:\n        return "Platinum", ____\n    elif purchases >= ____ or months >= ____:\n        return "Gold", ____\n    else:\n        return "Standard", ____\n\n# Test with a customer\ntier, discount = segment_customer(15000, 24)\nprint("Tier:", tier, "Discount:", discount)',
-    solution: '# Customer Data Processor\n\ncustomers = [\n    {"id": "C001", "name": "Alice", "purchases": 15000, "months": 24},\n    {"id": "C002", "name": "Bob", "purchases": 8500, "months": 12},\n    {"id": "C003", "name": "Carol", "purchases": 3200, "months": 6},\n]\n\ndef segment_customer(purchases, months):\n    """Determine customer tier based on purchases and tenure."""\n    if purchases >= 10000 and months >= 12:\n        return "Platinum", 0.20\n    elif purchases >= 5000 or months >= 6:\n        return "Gold", 0.10\n    else:\n        return "Standard", 0.05\n\n# Test with a customer\ntier, discount = segment_customer(15000, 24)\nprint("Tier:", tier, "Discount:", discount)',
-    hints: [
-      'Platinum requires BOTH conditions (and)',
-      'Gold requires EITHER condition (or)',
-      'Discount rates should be decimals: 0.20 for 20%',
-      'Access dictionary values with customer["key_name"]'
     ]
   }
 ];
