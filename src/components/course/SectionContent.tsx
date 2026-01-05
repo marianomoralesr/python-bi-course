@@ -360,7 +360,7 @@ function CalloutBlock({ variant, title, content }: CalloutBlockProps) {
           {title && (
             <h4 className="font-semibold mb-1">{title}</h4>
           )}
-          <p className="text-sm opacity-90 leading-relaxed">{content}</p>
+          <p className="text-sm opacity-90 leading-relaxed whitespace-pre-line">{content}</p>
         </div>
       </div>
     </div>

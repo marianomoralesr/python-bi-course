@@ -656,18 +656,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Create Integer Variables',
+            text: 'Interactive Exercise: Create Integer Variables',
             id: 'int-exercise'
           },
           {
             type: 'paragraph',
-            text: 'Complete the code by filling in the blanks with appropriate integer values:'
+            text: 'Now it is your turn! Create integer variables and perform a calculation.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Create a variable total_orders with value 250\n2. Create a variable days_in_month with value 30\n3. Calculate orders_per_day using floor division (//)\n4. Print the result using an f-string'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Fill in the blanks with integer values\ntotal_orders = 250       # Number of orders this month\ndays_in_month = 30       # Days in the month\n\n# Calculate orders per day\norders_per_day = total_orders // days_in_month\nprint(f"Average orders per day: {orders_per_day}")',
+            code: '# YOUR CODE: Create the variables and calculate\n# Hint: Use // for floor division\n\ntotal_orders = ___       # Number of orders this month\ndays_in_month = ___      # Days in the month\n\n# Calculate orders per day\norders_per_day = ___ // ___\nprint(f"Average orders per day: {orders_per_day}")',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution (click to expand)',
+            content: 'total_orders = 250\ndays_in_month = 30\norders_per_day = total_orders // days_in_month\nResult: 8 orders per day'
           },
           {
             type: 'heading',
@@ -710,14 +722,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Calculate Discount',
+            text: 'Interactive Exercise: Calculate Discount',
             id: 'float-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice calculating discounts - a common BI task for retail analytics.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Set original_price to 100.00\n2. Set discount_rate to 0.25 (25%)\n3. Calculate discount_amount (price * rate)\n4. Calculate final_price (original - discount)\n5. Print both results with $ formatting'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Calculate the discounted price\noriginal_price = 100.00\ndiscount_rate = 0.25  # 25% discount\n\n# Calculate the discount amount\ndiscount_amount = original_price * discount_rate\nprint(f"Discount: ${discount_amount}")\n\n# Calculate final price\nfinal_price = original_price - discount_amount\nprint(f"Final price: ${final_price}")',
+            code: '# YOUR CODE: Calculate the discounted price\noriginal_price = ___      # Original price\ndiscount_rate = ___       # 25% as a decimal\n\n# Calculate the discount amount\ndiscount_amount = ___ * ___\nprint(f"Discount: ${discount_amount}")\n\n# Calculate final price\nfinal_price = ___ - ___\nprint(f"Final price: ${final_price}")',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'original_price = 100.00\ndiscount_rate = 0.25\ndiscount_amount = original_price * discount_rate (= 25.0)\nfinal_price = original_price - discount_amount (= 75.0)'
           },
           {
             type: 'mini-quiz',
@@ -774,14 +802,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: String Indexing',
+            text: 'Interactive Exercise: String Indexing',
             id: 'string-index-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice accessing characters by their index position.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Given company = "Microsoft":\n1. Get the first letter (index 0)\n2. Get the last letter (use negative index)\n3. Get the 5th letter (remember: index = position - 1)'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Practice indexing\ncompany = "Microsoft"\n\n# Index:  0  1  2  3  4  5  6  7  8\n# Char:   M  i  c  r  o  s  o  f  t\n\n# Get the first letter\nfirst = company[0]\nprint(f"First letter: {first}")  # M\n\n# Get the last letter\nlast = company[-1]\nprint(f"Last letter: {last}")    # t\n\n# Get the 5th letter (index 4)\nfifth = company[4]\nprint(f"Fifth letter: {fifth}")  # o',
+            code: '# Practice indexing\ncompany = "Microsoft"\n\n# Index:  0  1  2  3  4  5  6  7  8\n# Char:   M  i  c  r  o  s  o  f  t\n\n# YOUR CODE: Get the first letter (should be M)\nfirst = company[___]\nprint(f"First letter: {first}")\n\n# YOUR CODE: Get the last letter using negative index (should be t)\nlast = company[___]\nprint(f"Last letter: {last}")\n\n# YOUR CODE: Get the 5th letter (should be o)\nfifth = company[___]\nprint(f"Fifth letter: {fifth}")',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'first = company[0] -> M\nlast = company[-1] -> t\nfifth = company[4] -> o (5th position = index 4)'
           },
           {
             type: 'mini-quiz',
@@ -816,14 +860,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Extract SKU Parts',
+            text: 'Interactive Exercise: Extract SKU Parts',
             id: 'slice-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'SKU parsing is a real-world BI task. Practice extracting data from a formatted string.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Given SKU format: CAT-12345-XL (Category-ID-Size)\n1. Extract category (first 3 chars): use [0:3]\n2. Extract product_id (chars 4-8): use [4:9]\n3. Extract size (last 2 chars): use [-2:]'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Product SKU format: CAT-12345-XL\n# Category (3 chars) - ID (5 digits) - Size (2 chars)\nsku = "ELE-98765-MD"\n\n# Extract the category code (first 3 characters)\ncategory = sku[0:3]\nprint(f"Category: {category}")  # ELE\n\n# Extract the product ID (characters 4-8)\nproduct_id = sku[4:9]\nprint(f"Product ID: {product_id}")  # 98765\n\n# Extract the size (last 2 characters)\nsize = sku[-2:]\nprint(f"Size: {size}")  # MD',
+            code: '# Product SKU format: CAT-12345-XL\n# Category (3 chars) - ID (5 digits) - Size (2 chars)\nsku = "ELE-98765-MD"\n\n# YOUR CODE: Extract the category code (first 3 characters)\ncategory = sku[___:___]\nprint(f"Category: {category}")  # Should print: ELE\n\n# YOUR CODE: Extract the product ID (characters at positions 4-8)\nproduct_id = sku[___:___]\nprint(f"Product ID: {product_id}")  # Should print: 98765\n\n# YOUR CODE: Extract the size (last 2 characters)\nsize = sku[___:]\nprint(f"Size: {size}")  # Should print: MD',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'category = sku[0:3] -> ELE\nproduct_id = sku[4:9] -> 98765\nsize = sku[-2:] -> MD'
           },
           {
             type: 'mini-quiz',
@@ -905,14 +965,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Format a Sales Report',
+            text: 'Interactive Exercise: Format a Sales Report',
             id: 'f-string-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Create a professionally formatted sales report using f-string formatting specifiers.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Format the output using these specifiers:\n- :, for thousands separator\n- :.2f for 2 decimal places\n- :,.2f for both (currency format)'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Create a formatted sales report\nproduct = "Widget Pro"\nunits_sold = 1250\nunit_price = 29.99\n\n# Calculate total\ntotal_revenue = units_sold * unit_price\n\n# Print formatted report\nprint("=" * 30)\nprint(f"Product: {product}")\nprint(f"Units Sold: {units_sold:,}")\nprint(f"Unit Price: ${unit_price:.2f}")\nprint(f"Total Revenue: ${total_revenue:,.2f}")\nprint("=" * 30)',
+            code: '# Create a formatted sales report\nproduct = "Widget Pro"\nunits_sold = 1250\nunit_price = 29.99\n\n# Calculate total\ntotal_revenue = units_sold * unit_price\n\n# YOUR CODE: Format the report\nprint("=" * 30)\nprint(f"Product: {product}")\n# Add :, to format with comma separator\nprint(f"Units Sold: {units_sold___}")\n# Add :.2f for 2 decimal places\nprint(f"Unit Price: ${unit_price___}")\n# Add :,.2f for currency format\nprint(f"Total Revenue: ${total_revenue___}")\nprint("=" * 30)',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'Units Sold: {units_sold:,} -> 1,250\nUnit Price: {unit_price:.2f} -> 29.99\nTotal Revenue: {total_revenue:,.2f} -> 37,487.50'
           },
           {
             type: 'heading',
@@ -945,14 +1021,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Clean Customer Data',
+            text: 'Interactive Exercise: Clean Customer Data',
             id: 'clean-data-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Data cleaning is one of the most important BI skills. Practice cleaning messy customer data.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Clean this messy data using string methods:\n1. Name: strip() to remove spaces, title() for proper case\n2. Email: strip() then lower() for standard format\n3. Phone: replace("-", "") to remove dashes'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Clean this messy customer data\nraw_name = "   JOHN DOE   "\nraw_email = "  John.Doe@EMAIL.COM  "\nraw_phone = "555-999-1234"\n\n# Clean the name: remove spaces, proper case\nclean_name = raw_name.strip().title()\nprint(f"Name: {clean_name}")\n\n# Clean the email: remove spaces, lowercase\nclean_email = raw_email.strip().lower()\nprint(f"Email: {clean_email}")\n\n# Clean the phone: remove dashes\nclean_phone = raw_phone.replace("-", "")\nprint(f"Phone: {clean_phone}")',
+            code: '# Clean this messy customer data\nraw_name = "   JOHN DOE   "\nraw_email = "  John.Doe@EMAIL.COM  "\nraw_phone = "555-999-1234"\n\n# YOUR CODE: Clean the name (remove spaces, proper case)\n# Hint: chain methods with .strip().title()\nclean_name = raw_name.___().___\nprint(f"Name: {clean_name}")  # Should print: John Doe\n\n# YOUR CODE: Clean the email (remove spaces, lowercase)\nclean_email = raw_email.___().___\nprint(f"Email: {clean_email}")  # Should print: john.doe@email.com\n\n# YOUR CODE: Clean the phone (remove dashes)\nclean_phone = raw_phone.___("___", "___")\nprint(f"Phone: {clean_phone}")  # Should print: 5559991234',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'clean_name = raw_name.strip().title()\nclean_email = raw_email.strip().lower()\nclean_phone = raw_phone.replace("-", "")'
           },
           {
             type: 'exercise-link',
@@ -1026,14 +1118,30 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 3,
-            text: 'Mini-Exercise: Process Sales Data',
+            text: 'Interactive Exercise: Process Sales Data',
             id: 'conversion-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Data from files often arrives as strings. Practice converting string data to proper types for calculations.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Convert price_str to float using float()\n2. Convert quantity_str to int using int()\n3. Calculate revenue\n4. Print formatted results'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Process this sales data (all values are strings!)\nproduct_name = "Laptop Pro"\nprice_str = "999.99"\nquantity_str = "5"\n\n# Convert to proper types\nprice = float(price_str)\nquantity = int(quantity_str)\n\n# Calculate revenue\nrevenue = price * quantity\n\n# Print formatted result\nprint(f"Product: {product_name}")\nprint(f"Units: {quantity:,}")\nprint(f"Unit Price: ${price:,.2f}")\nprint(f"Total Revenue: ${revenue:,.2f}")',
+            code: '# Process this sales data (all values are strings!)\nproduct_name = "Laptop Pro"\nprice_str = "999.99"\nquantity_str = "5"\n\n# YOUR CODE: Convert strings to proper types\nprice = ___(price_str)       # Convert to float\nquantity = ___(quantity_str)  # Convert to int\n\n# YOUR CODE: Calculate revenue\nrevenue = ___ * ___\n\n# Print formatted result\nprint(f"Product: {product_name}")\nprint(f"Units: {quantity:,}")\nprint(f"Unit Price: ${price:,.2f}")\nprint(f"Total Revenue: ${revenue:,.2f}")',
             executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'price = float(price_str) -> 999.99\nquantity = int(quantity_str) -> 5\nrevenue = price * quantity -> 4999.95'
           },
           {
             type: 'heading',
@@ -1157,6 +1265,62 @@ export const chapters: Chapter[] = [
             ]
           },
           {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Profit Calculator',
+            id: 'profit-calc-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice using arithmetic operators to calculate business metrics.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Calculate profit metrics:\n1. Calculate profit (revenue - cost)\n2. Calculate profit_margin (profit / revenue)\n3. Calculate growth using ** for percentage increase'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Business profit calculator\nrevenue = 150000\ncost = 95000\nlast_year_profit = 40000\n\n# YOUR CODE: Calculate this year profit\nprofit = ___ - ___\nprint(f"Profit: ${profit:,}")\n\n# YOUR CODE: Calculate profit margin (profit divided by revenue)\nprofit_margin = ___ / ___\nprint(f"Profit Margin: {profit_margin:.1%}")\n\n# YOUR CODE: Calculate growth rate\n# (this_year - last_year) / last_year\ngrowth = (___ - ___) / ___\nprint(f"Year-over-Year Growth: {growth:.1%}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'profit = revenue - cost -> 55000\nprofit_margin = profit / revenue -> 36.7%\ngrowth = (profit - last_year_profit) / last_year_profit -> 37.5%'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Sales Target Check',
+            id: 'target-check-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Use comparison and logical operators to check sales performance.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Create boolean checks:\n1. Check if sales exceeded target (>)\n2. Check if sales match last year (==)\n3. Check if hit target AND beat last year (use and)'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Sales performance checker\nsales = 85000\ntarget = 80000\nlast_year = 85000\n\n# YOUR CODE: Check if exceeded target\nexceeded_target = sales ___ target\nprint(f"Exceeded target: {exceeded_target}")\n\n# YOUR CODE: Check if matches last year exactly\nmatches_last_year = sales ___ last_year\nprint(f"Matches last year: {matches_last_year}")\n\n# YOUR CODE: Check both conditions (use and)\ngreat_performance = (sales ___ target) ___ (sales ___ last_year)\nprint(f"Great performance: {great_performance}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'exceeded_target = sales > target -> True\nmatches_last_year = sales == last_year -> True\ngreat_performance = (sales > target) and (sales >= last_year) -> True'
+          },
+          {
             type: 'exercise-link',
             exerciseId: 'chapter-1-operators-exercise',
             title: 'Practice: Financial Calculator'
@@ -1247,6 +1411,90 @@ export const chapters: Chapter[] = [
             variant: 'tip',
             title: 'Best Practice',
             content: 'In BI applications, use meaningful condition names and add comments for complex business logic. This makes your code easier to maintain and audit.'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Grade Calculator',
+            id: 'grade-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice writing if-elif-else chains to assign grades based on scores.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Complete the grade calculator:\n- A: score >= 90\n- B: score >= 80\n- C: score >= 70\n- F: below 70'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Grade calculator\nscore = 85\n\n# YOUR CODE: Complete the if-elif-else chain\nif score >= ___:\n    grade = "A"\n    message = "Excellent!"\nelif score >= ___:\n    grade = "B"\n    message = "Good job!"\nelif score >= ___:\n    grade = "C"\n    message = "Passing"\nelse:\n    grade = "F"\n    message = "Needs improvement"\n\nprint(f"Score: {score}")\nprint(f"Grade: {grade}")\nprint(f"Feedback: {message}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'if score >= 90: (A)\nelif score >= 80: (B)\nelif score >= 70: (C)\nelse: (F)\n\nWith score = 85, the result is Grade B'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Shipping Cost Calculator',
+            id: 'shipping-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Build a shipping cost calculator using conditionals - a common e-commerce BI task.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Calculate shipping based on order total:\n- Free shipping if order >= $100\n- $5.99 if order >= $50\n- $9.99 for orders under $50'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Shipping cost calculator\norder_total = 75.00\n\n# YOUR CODE: Determine shipping cost\nif order_total >= ___:\n    shipping = ___\n    message = "Free Shipping!"\nelif order_total >= ___:\n    shipping = ___\n    message = "Standard Shipping"\nelse:\n    shipping = ___\n    message = "Basic Shipping"\n\nfinal_total = order_total + shipping\n\nprint(f"Order Total: ${order_total:.2f}")\nprint(f"Shipping ({message}): ${shipping:.2f}")\nprint(f"Final Total: ${final_total:.2f}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'if order_total >= 100: shipping = 0\nelif order_total >= 50: shipping = 5.99\nelse: shipping = 9.99\n\nWith order_total = 75, shipping = 5.99'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Employee Bonus',
+            id: 'bonus-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice combining multiple conditions with and/or operators.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Determine bonus eligibility:\n- 15% bonus: sales >= 100000 AND years >= 5\n- 10% bonus: sales >= 80000 OR years >= 3\n- 5% bonus: all others'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Employee bonus calculator\nemployee_name = "Sarah Chen"\nsales = 95000\nyears_employed = 4\n\n# YOUR CODE: Use and/or to combine conditions\nif sales >= ___ ___ years_employed >= ___:\n    bonus_rate = 0.15\n    tier = "Senior Excellence"\nelif sales >= ___ ___ years_employed >= ___:\n    bonus_rate = 0.10\n    tier = "Achiever"\nelse:\n    bonus_rate = 0.05\n    tier = "Contributor"\n\nbonus = sales * bonus_rate\n\nprint(f"Employee: {employee_name}")\nprint(f"Sales: ${sales:,}")\nprint(f"Years: {years_employed}")\nprint(f"Tier: {tier}")\nprint(f"Bonus Rate: {bonus_rate:.0%}")\nprint(f"Bonus Amount: ${bonus:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'if sales >= 100000 and years_employed >= 5:\nelif sales >= 80000 or years_employed >= 3:\n\nWith sales=95000, years=4: qualifies for 10% (Achiever) because 95000 >= 80000'
           },
           {
             type: 'exercise-link',
@@ -1354,6 +1602,62 @@ export const chapters: Chapter[] = [
             content: 'Lists are perfect for storing time series data, product names, or any sequential data. For larger datasets, you\'ll eventually use Pandas DataFrames, but lists are the foundation.'
           },
           {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: List Operations',
+            id: 'list-ops-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice creating lists and using common list methods.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Create a list of monthly sales values\n2. Calculate the total using sum()\n3. Find the max and min values\n4. Add a new month using append()'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# YOUR CODE: Create a list of 6 monthly sales values\nmonthly_sales = [___, ___, ___, ___, ___, ___]\n\n# YOUR CODE: Calculate total sales\ntotal = ___(monthly_sales)\nprint(f"Total Sales: ${total:,}")\n\n# YOUR CODE: Find best and worst months\nbest_month = ___(monthly_sales)\nworst_month = ___(monthly_sales)\nprint(f"Best Month: ${best_month:,}")\nprint(f"Worst Month: ${worst_month:,}")\n\n# YOUR CODE: Add July sales (35000) to the list\nmonthly_sales.___(35000)\nprint(f"Updated list: {monthly_sales}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'monthly_sales = [25000, 30000, 28000, 35000, 32000, 29000]\ntotal = sum(monthly_sales)\nbest_month = max(monthly_sales)\nworst_month = min(monthly_sales)\nmonthly_sales.append(35000)'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: List Slicing',
+            id: 'list-slice-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice extracting portions of lists using slicing.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Given quarterly_data = [Q1, Q2, Q3, Q4, Q1, Q2, Q3, Q4]:\n1. Get first half (first 4 elements)\n2. Get last quarter only\n3. Get Q2 and Q3 of first year'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Quarterly data for 2 years\nquarterly_data = [25000, 30000, 28000, 35000, 27000, 33000, 31000, 38000]\n# Indexes:         0      1      2      3      4      5      6      7\n\n# YOUR CODE: Get first year (first 4 elements)\nfirst_year = quarterly_data[___:___]\nprint(f"First Year: {first_year}")\n\n# YOUR CODE: Get last quarter only (last element)\nlast_quarter = quarterly_data[___]\nprint(f"Last Quarter: {last_quarter}")\n\n# YOUR CODE: Get Q2 and Q3 of first year (indexes 1 and 2)\nmiddle_quarters = quarterly_data[___:___]\nprint(f"Q2-Q3 First Year: {middle_quarters}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'first_year = quarterly_data[0:4] or quarterly_data[:4]\nlast_quarter = quarterly_data[-1]\nmiddle_quarters = quarterly_data[1:3]'
+          },
+          {
             type: 'mini-quiz',
             id: 'quiz-lists-1',
             question: 'Si lista = [10, 20, 30, 40], ¿qué devuelve lista[-2]?',
@@ -1437,6 +1741,62 @@ export const chapters: Chapter[] = [
             language: 'python',
             code: '# Nested dictionary - representing complex data\ncompany_data = {\n    "company": "TechCorp",\n    "departments": {\n        "Sales": {\n            "employees": 25,\n            "budget": 500000\n        },\n        "Engineering": {\n            "employees": 50,\n            "budget": 1200000\n        },\n        "Marketing": {\n            "employees": 15,\n            "budget": 300000\n        }\n    }\n}\n\n# Access nested data\neng_budget = company_data["departments"]["Engineering"]["budget"]\nprint("Engineering Budget:", eng_budget)\n\n# Calculate total employees\ntotal_emp = sum(\n    dept["employees"] \n    for dept in company_data["departments"].values()\n)\nprint("Total Employees:", total_emp)',
             executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Dictionary Access',
+            id: 'dict-access-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice accessing and modifying dictionary values.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Access the product name\n2. Update the price to 59.99\n3. Add a "discount" key with value 0.10\n4. Use get() to safely access "warranty"'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Product dictionary\nproduct = {\n    "name": "Premium Widget",\n    "price": 49.99,\n    "category": "Electronics",\n    "in_stock": True\n}\n\n# YOUR CODE: Access the product name\nname = product[___]\nprint(f"Product: {name}")\n\n# YOUR CODE: Update the price to 59.99\nproduct[___] = ___\nprint(f"New Price: ${product[\'price\']}")\n\n# YOUR CODE: Add a discount key with value 0.10\nproduct[___] = ___\nprint(f"Discount: {product[\'discount\']:.0%}")\n\n# YOUR CODE: Safely get warranty (returns "N/A" if not found)\nwarranty = product.___(_____, _____)\nprint(f"Warranty: {warranty}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'name = product["name"]\nproduct["price"] = 59.99\nproduct["discount"] = 0.10\nwarranty = product.get("warranty", "N/A")'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Dictionary Methods',
+            id: 'dict-methods-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice using dictionary methods for data analysis.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Get all quarter names using .keys()\n2. Get all sales values using .values()\n3. Calculate total and average sales'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Quarterly sales data\nquarterly_sales = {\n    "Q1": 125000,\n    "Q2": 142000,\n    "Q3": 138000,\n    "Q4": 165000\n}\n\n# YOUR CODE: Get all quarter names\nquarters = list(quarterly_sales.___())\nprint(f"Quarters: {quarters}")\n\n# YOUR CODE: Get all sales values\nsales = list(quarterly_sales.___())\nprint(f"Sales: {sales}")\n\n# YOUR CODE: Calculate total sales\ntotal = ___(quarterly_sales.___())\nprint(f"Total: ${total:,}")\n\n# YOUR CODE: Calculate average\naverage = total / ___(quarterly_sales)\nprint(f"Average: ${average:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'quarters = list(quarterly_sales.keys())\nsales = list(quarterly_sales.values())\ntotal = sum(quarterly_sales.values())\naverage = total / len(quarterly_sales)'
           },
           {
             type: 'exercise-link',
@@ -1677,6 +2037,62 @@ export const chapters: Chapter[] = [
             language: 'python',
             code: '# String multiplication - repeat a character\nprint("=" * 40)  # Print 40 equal signs\nprint("SALES REPORT".center(40))  # Center text in 40 chars\nprint("=" * 40)\n\n# Create formatted headers\nseparator = "-" * 30\nprint(separator)\nprint("Monthly Results")\nprint(separator)\n\n# Use in loops for clean reports\nfor region in ["North", "South", "East"]:\n    print(f"  Region: {region}")\nprint("-" * 30)',
             executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: For Loop Practice',
+            id: 'for-loop-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice iterating through lists and calculating totals.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Loop through the products list\n2. Print each product name\n3. Calculate total of all prices\n4. Find the most expensive product'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Product data\nproducts = ["Laptop", "Mouse", "Keyboard", "Monitor"]\nprices = [999, 29, 79, 299]\n\n# YOUR CODE: Loop through products and print each\nprint("Products:")\nfor ___ in ___:\n    print(f"  - {product}")\n\n# YOUR CODE: Calculate total price using a loop\ntotal = 0\nfor ___ in ___:\n    total = total + ___\nprint(f"\\nTotal: ${total}")\n\n# YOUR CODE: Use zip() to pair products with prices\nprint("\\nPrice List:")\nfor product, price in ___(products, prices):\n    print(f"  {product}: ${price}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'for product in products:\ntotal = 0; for price in prices: total = total + price\nfor product, price in zip(products, prices):'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: List Comprehension',
+            id: 'list-comp-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Convert traditional loops to elegant list comprehensions.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Create a list of doubled values\n2. Filter values greater than 50000\n3. Create categories based on conditions'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Sales data\nsales = [25000, 35000, 60000, 45000, 80000]\n\n# YOUR CODE: Double all sales using list comprehension\n# Syntax: [expression for item in list]\ndoubled = [___ * 2 for s in ___]\nprint(f"Doubled: {doubled}")\n\n# YOUR CODE: Filter sales > 50000\n# Syntax: [item for item in list if condition]\nhigh_sales = [s for s in ___ if s ___ 50000]\nprint(f"High sales: {high_sales}")\n\n# YOUR CODE: Create "High"/"Low" labels\n# Syntax: [value_if_true if condition else value_if_false for item in list]\nlabels = ["___" if s >= 50000 else "___" for s in sales]\nprint(f"Labels: {labels}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'doubled = [s * 2 for s in sales]\nhigh_sales = [s for s in sales if s > 50000]\nlabels = ["High" if s >= 50000 else "Low" for s in sales]'
           },
           {
             type: 'exercise-link',
