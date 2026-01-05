@@ -2303,6 +2303,34 @@ export const chapters: Chapter[] = [
             content: 'Always catch specific exceptions rather than using a bare except. This makes debugging easier and prevents hiding unexpected errors.'
           },
           {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Basic Error Handling',
+            id: 'error-basic-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice writing try-except blocks to handle common errors.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Complete the try-except block\n2. Handle ZeroDivisionError\n3. Return None when division fails'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Safe division function\ndef safe_divide(a, b):\n    ___:  # Start error handling block\n        result = a / b\n        return result\n    ___ ZeroDivisionError:  # Catch specific error\n        print("Cannot divide by zero!")\n        return ___  # Return None on error\n\n# Test your function\nprint("10 / 2 =", safe_divide(10, 2))   # Should work\nprint("10 / 0 =", safe_divide(10, 0))   # Should catch error\nprint("15 / 3 =", safe_divide(15, 3))   # Should work',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'try:\n    result = a / b\n    return result\nexcept ZeroDivisionError:\n    print("Cannot divide by zero!")\n    return None'
+          },
+          {
             type: 'mini-quiz',
             id: 'quiz-error-types',
             question: 'Which error type occurs when you try to access a dictionary key that doesn\'t exist?',
@@ -2427,6 +2455,62 @@ export const chapters: Chapter[] = [
             executable: true
           },
           {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Try-Except-Finally',
+            id: 'try-finally-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice using the complete error handling pattern with finally clause.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Add the try block around risky code\n2. Catch ValueError exception\n3. Add finally block that always prints "Cleanup done"'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Complete error handling exercise\ndef convert_to_number(text):\n    print(f"Converting: {text}")\n    \n    ___:  # Start try block\n        number = int(text)\n        print(f"Success! Got: {number}")\n        return number\n    ___ ValueError:  # Catch the error\n        print(f"Failed! \'{text}\' is not a valid number")\n        return None\n    ___:  # Add finally block\n        print("Cleanup done")\n        print("-" * 20)\n\n# Test the function\nresult1 = convert_to_number("42")\nresult2 = convert_to_number("hello")\nresult3 = convert_to_number("100")\n\nprint(f"Results: {result1}, {result2}, {result3}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'try:\n    number = int(text)\nexcept ValueError:\n    print(f"Failed!")\n    return None\nfinally:\n    print("Cleanup done")'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Multiple Exception Types',
+            id: 'multi-except-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Handle different types of errors with specific messages.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: 'Handle three error types:\n1. KeyError - when key not found\n2. ValueError - when conversion fails\n3. TypeError - when wrong type used'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Multi-exception handler\ndef get_price(products, product_name):\n    try:\n        price_str = products[product_name]\n        price = float(price_str)\n        return price\n    except ___:  # Key not in dictionary\n        return f"Product \'{product_name}\' not found"\n    except ___:  # Cannot convert to float\n        return f"Invalid price format"\n    except ___:  # Wrong type passed\n        return f"Invalid data type"\n\n# Test data\nproduct_prices = {\n    "Widget": "29.99",\n    "Gadget": "invalid",\n    "Tool": "15.00"\n}\n\n# Test cases\nprint(get_price(product_prices, "Widget"))   # Should work\nprint(get_price(product_prices, "Unknown"))  # KeyError\nprint(get_price(product_prices, "Gadget"))   # ValueError',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'except KeyError:\n    return "Product not found"\nexcept ValueError:\n    return "Invalid price format"\nexcept TypeError:\n    return "Invalid data type"'
+          },
+          {
             type: 'exercise-link',
             exerciseId: 'chapter-3-error-handling-exercise',
             title: 'Practice: Robust Data Validator'
@@ -2543,6 +2627,62 @@ export const chapters: Chapter[] = [
             options: ['ValueError', 'FileNotFoundError', 'IOError', 'KeyError'],
             correctAnswer: 1,
             explanation: 'FileNotFoundError is raised when trying to open a file that doesn\'t exist. It\'s a common error to handle in file processing code.'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Parse File Lines',
+            id: 'parse-lines-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice splitting file content into lines and processing each one.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Split the content into lines using splitlines()\n2. Loop through each line\n3. Split each line by comma to get fields\n4. Print the product name and price'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Simulated file content (in real code this comes from file.read())\nfile_content = """Product,Price,Stock\nLaptop,999.99,50\nMouse,29.99,200\nKeyboard,79.99,150"""\n\n# YOUR CODE: Split into lines\nlines = file_content.___()\n\n# Skip header and process data\nfor line in lines[1:]:  # Skip first line (header)\n    # YOUR CODE: Split line by comma\n    fields = line.___(\",\")\n    \n    # YOUR CODE: Extract product name (index 0) and price (index 1)\n    product = fields[___]\n    price = fields[___]\n    \n    print(f"Product: {product}, Price: ${price}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'lines = file_content.splitlines()\nfields = line.split(",")\nproduct = fields[0]\nprice = fields[1]'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Safe File Reading',
+            id: 'safe-file-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Combine file reading with error handling.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Use try-except to handle FileNotFoundError\n2. Return empty list if file not found\n3. Split lines and return as list'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Safe file reader function\ndef read_lines_safe(content):\n    """\n    Safely read and return lines from content.\n    Returns empty list on error.\n    """\n    ___:  # Start try block\n        lines = content.splitlines()\n        return lines\n    ___ Exception as e:  # Catch any error\n        print(f"Error reading: {e}")\n        return ___  # Return empty list\n\n# Test with valid content\ndata = "Line 1\\nLine 2\\nLine 3"\nresult = read_lines_safe(data)\nprint(f"Lines found: {len(result)}")\nfor i, line in enumerate(result, 1):\n    print(f"  {i}: {line}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'try:\n    lines = content.splitlines()\n    return lines\nexcept Exception as e:\n    print(f"Error: {e}")\n    return []'
           },
           {
             type: 'section-nav',
@@ -2744,6 +2884,62 @@ export const chapters: Chapter[] = [
             content: 'Never split CSV by comma manually! Real CSV files have quoted fields, escaped characters, and special cases. The csv module handles all of this correctly.'
           },
           {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Parse CSV Data',
+            id: 'csv-parse-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice parsing CSV-formatted data into structured records.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Split the CSV content into lines\n2. Extract headers from first line\n3. Loop through data lines and create dictionaries\n4. Calculate totals'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# CSV data as string\ncsv_data = """product,price,quantity\nWidget A,29.99,10\nWidget B,49.99,5\nWidget C,19.99,20"""\n\n# YOUR CODE: Split into lines\nlines = csv_data.___()\n\n# YOUR CODE: Get headers from first line\nheaders = lines[___].split(",")\nprint(f"Headers: {headers}")\n\n# Process data rows\nrecords = []\nfor line in lines[___:]:  # Skip header\n    values = line.split(",")\n    # Create dictionary from headers and values\n    record = {\n        headers[0]: values[0],\n        headers[1]: ___(values[1]),  # Convert to float\n        headers[2]: ___(values[2])   # Convert to int\n    }\n    records.append(record)\n\n# Calculate and display\nfor r in records:\n    total = r["price"] * r["quantity"]\n    print(f"{r[\'product\']}: ${total:.2f}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'lines = csv_data.splitlines()\nheaders = lines[0].split(",")\nfor line in lines[1:]:\nfloat(values[1])\nint(values[2])'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: CSV to Dictionary',
+            id: 'csv-dict-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Create a reusable function to parse CSV into a list of dictionaries.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Complete the parse function\n2. Use zip() to pair headers with values\n3. Return list of dictionaries'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# CSV parser function\ndef parse_csv(csv_text):\n    """\n    Parse CSV text into a list of dictionaries.\n    First row is treated as headers.\n    """\n    lines = csv_text.splitlines()\n    \n    # YOUR CODE: Get headers\n    headers = lines[___].split(\",\")\n    \n    # YOUR CODE: Create list of record dictionaries\n    records = []\n    for line in lines[1:]:\n        values = line.split(\",\")\n        # Use zip to pair headers with values\n        record = dict(___(headers, values))\n        records.___(record)\n    \n    return records\n\n# Test the function\ndata = """name,department,salary\nAlice,Engineering,85000\nBob,Sales,72000\nCarol,Marketing,68000"""\n\nemployees = parse_csv(data)\n\nfor emp in employees:\n    print(f"{emp[\'name\']} - {emp[\'department\']}: ${emp[\'salary\']}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'headers = lines[0].split(",")\nrecord = dict(zip(headers, values))\nrecords.append(record)'
+          },
+          {
             type: 'section-nav',
             showComplete: true,
             showNext: true,
@@ -2831,6 +3027,62 @@ export const chapters: Chapter[] = [
             options: ['A physical tube for data', 'A sequence of steps that transform data from input to output', 'A type of database', 'A Python library'],
             correctAnswer: 1,
             explanation: 'A data pipeline is a series of processing steps (read, clean, transform, aggregate, output) that convert raw data into useful information.'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Aggregate Sales Data',
+            id: 'aggregate-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice calculating totals and averages from sales records.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Loop through records and sum quantities\n2. Calculate total revenue (price * quantity)\n3. Find the average price'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Sales records\nrecords = [\n    {"product": "Widget A", "price": 29.99, "quantity": 100},\n    {"product": "Widget B", "price": 49.99, "quantity": 50},\n    {"product": "Widget C", "price": 19.99, "quantity": 200},\n]\n\n# YOUR CODE: Calculate totals\ntotal_quantity = 0\ntotal_revenue = 0\n\nfor record in records:\n    # Add to total quantity\n    total_quantity += record[___]\n    \n    # Calculate and add revenue (price * quantity)\n    revenue = record[___] * record[___]\n    total_revenue += revenue\n\n# YOUR CODE: Calculate average price\navg_price = sum(r[___] for r in records) / ___(records)\n\nprint(f"Total Units Sold: {total_quantity:,}")\nprint(f"Total Revenue: ${total_revenue:,.2f}")\nprint(f"Average Price: ${avg_price:.2f}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'total_quantity += record["quantity"]\nrevenue = record["price"] * record["quantity"]\navg_price = sum(r["price"] for r in records) / len(records)'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Interactive Exercise: Filter and Group Data',
+            id: 'filter-group-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Practice filtering records and grouping by category.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Your Task',
+            content: '1. Filter records with quantity > 50\n2. Group totals by category\n3. Find the top-selling category'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Product records with categories\nproducts = [\n    {"name": "Laptop", "category": "Electronics", "sales": 50000},\n    {"name": "Mouse", "category": "Electronics", "sales": 15000},\n    {"name": "Desk", "category": "Furniture", "sales": 25000},\n    {"name": "Chair", "category": "Furniture", "sales": 30000},\n    {"name": "Notebook", "category": "Supplies", "sales": 5000},\n]\n\n# YOUR CODE: Filter products with sales > 20000\nhigh_sellers = [p for p in products if p[___] > ___]\nprint("High sellers:")\nfor p in high_sellers:\n    print(f"  {p[\'name\']}: ${p[\'sales\']:,}")\n\n# YOUR CODE: Group sales by category\ncategory_totals = {}\nfor p in products:\n    cat = p[___]\n    if cat not in category_totals:\n        category_totals[cat] = 0\n    category_totals[cat] += p[___]\n\nprint("\\nSales by Category:")\nfor cat, total in category_totals.items():\n    print(f"  {cat}: ${total:,}")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Solution',
+            content: 'high_sellers = [p for p in products if p["sales"] > 20000]\ncat = p["category"]\ncategory_totals[cat] += p["sales"]'
           },
           {
             type: 'exercise-link',
