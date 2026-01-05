@@ -340,6 +340,254 @@ export const chapters: Chapter[] = [
             showComplete: true,
             showNext: true,
             showBack: true,
+            nextSection: 'reserved-words'
+          }
+        ]
+      },
+      {
+        id: 'reserved-words',
+        title: 'Reserved Words & Common Pitfalls',
+        estimatedTime: 15,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Python Reserved Words & Common Pitfalls',
+            id: 'reserved-words-intro'
+          },
+          {
+            type: 'paragraph',
+            text: 'Python has special words called KEYWORDS or RESERVED WORDS that have specific meanings in the language. You cannot use these as variable names because Python would get confused about what you mean.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Python Reserved Words (Keywords)',
+            id: 'keywords-list'
+          },
+          {
+            type: 'paragraph',
+            text: 'Here are all 35 Python keywords. Memorize the most common ones highlighted in bold:'
+          },
+          {
+            type: 'table',
+            headers: ['Category', 'Keywords', 'Description'],
+            rows: [
+              ['Values', 'True, False, None', 'Boolean values and null/empty value'],
+              ['Logic', 'and, or, not, is, in', 'Logical and comparison operators'],
+              ['Conditionals', 'if, elif, else', 'Decision-making statements'],
+              ['Loops', 'for, while, break, continue', 'Repetition and loop control'],
+              ['Functions', 'def, return, lambda', 'Function definition'],
+              ['Classes', 'class, self', 'Object-oriented programming'],
+              ['Exception', 'try, except, finally, raise', 'Error handling'],
+              ['Importing', 'import, from, as', 'Module importing'],
+              ['Other', 'with, pass, yield, global, nonlocal, assert, del, async, await', 'Advanced features']
+            ]
+          },
+          {
+            type: 'callout',
+            variant: 'warning',
+            title: 'Common Beginner Mistake',
+            content: 'Never use True, False, None, if, for, while, def, class, return, or import as variable names. Python will throw a SyntaxError!'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# You can check if a word is a keyword\nimport keyword\n\n# Print all Python keywords\nprint("Python keywords:")\nprint(keyword.kwlist)\n\n# Check specific words\nprint("Is if a keyword?", keyword.iskeyword("if"))      # True\nprint("Is total a keyword?", keyword.iskeyword("total"))  # False',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Common Syntax Patterns',
+            id: 'syntax-patterns'
+          },
+          {
+            type: 'paragraph',
+            text: 'Here are the most common code patterns you will see and write in Python. Study these forms carefully:'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Pattern 1: Variable Assignment',
+            id: 'pattern-assignment'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Basic syntax: variable_name = value\n\n# String assignment\nname = "John"\n\n# Number assignment\nage = 25\nprice = 19.99\n\n# Boolean assignment\nis_active = True\n\n# Multiple assignment (same value)\na = b = c = 0\n\n# Multiple assignment (different values)\nx, y, z = 1, 2, 3',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Pattern 2: Conditional Statements',
+            id: 'pattern-conditionals'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Basic if statement pattern\nscore = 85\n\nif score >= 90:\n    grade = "A"\nelif score >= 80:\n    grade = "B"\nelif score >= 70:\n    grade = "C"\nelse:\n    grade = "F"\n\nprint(f"Score: {score}, Grade: {grade}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Pattern 3: Loops',
+            id: 'pattern-loops'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# For loop pattern - iterating over items\nfruits = ["apple", "banana", "cherry"]\n\nfor fruit in fruits:\n    print(f"I like {fruit}")\n\n# For loop with range\nfor i in range(5):  # 0, 1, 2, 3, 4\n    print(f"Count: {i}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Common Pitfalls to Avoid',
+            id: 'common-pitfalls'
+          },
+          {
+            type: 'callout',
+            variant: 'error',
+            title: 'Pitfall #1: Using Reserved Words as Variables',
+            content: 'Never use keywords like if, for, class, True, or False as variable names. This causes a SyntaxError.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# WRONG - these will cause errors:\n# if = 5            # SyntaxError!\n# class = "Math"    # SyntaxError!\n# True = 100        # SyntaxError!\n\n# CORRECT alternatives:\nif_condition = 5\nclass_name = "Math"\nis_true = 100\n\nprint(if_condition, class_name, is_true)',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'error',
+            title: 'Pitfall #2: Forgetting the Colon (:)',
+            content: 'Statements like if, for, while, and def MUST end with a colon. Missing it causes a SyntaxError.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# WRONG - missing colon:\n# if x > 5\n#     print("big")   # SyntaxError!\n\n# CORRECT - with colon:\nx = 10\nif x > 5:           # <- colon required!\n    print("big")\n\n# Same for loops:\nfor i in range(3):  # <- colon required!\n    print(i)',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'error',
+            title: 'Pitfall #3: Incorrect Indentation',
+            content: 'Python uses indentation to define code blocks. Inconsistent or missing indentation causes IndentationError.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# WRONG - inconsistent indentation:\n# if True:\n#     print("first")   # 4 spaces\n#   print("second")     # 2 spaces - IndentationError!\n\n# CORRECT - consistent indentation:\nif True:\n    print("first")    # 4 spaces\n    print("second")   # 4 spaces - same!\n    print("third")    # 4 spaces - consistent',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'error',
+            title: 'Pitfall #4: Mixing Quotes Incorrectly',
+            content: 'String must start and end with the same type of quote. Mixing causes SyntaxError.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: "# WRONG:\n# message = \"Hello'   # Mixed quotes - SyntaxError!\n# name = 'John\"       # Mixed quotes - SyntaxError!\n\n# CORRECT:\nmessage1 = \"Hello\"    # Double quotes\nmessage2 = 'Hello'    # Single quotes\n\n# When you need quotes inside the string:\nsaying = \"He said 'Hi' to me\"     # Use opposite quote type\nsaying2 = 'She replied \"Hello\"'\n\nprint(saying)\nprint(saying2)",
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'error',
+            title: 'Pitfall #5: Using = Instead of ==',
+            content: 'Single = is for assignment. Double == is for comparison. Using the wrong one in conditions causes errors or bugs.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: "# = is for assignment (storing a value)\nx = 5  # Store 5 in x\n\n# == is for comparison (checking equality)\nif x == 5:      # Check if x equals 5\n    print(\"x is 5!\")\n\n# COMMON MISTAKE:\n# if x = 5:    # SyntaxError! Cannot use = in if statement\n\n# CORRECT:\nif x == 5:      # Use == for comparison\n    print(\"Correct!\")",
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Error Prediction Exercises',
+            id: 'error-prediction'
+          },
+          {
+            type: 'paragraph',
+            text: 'Test your understanding! Look at each code snippet and predict whether it will run successfully or produce an error.'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'error-predict-1',
+            question: 'Will this code run? for = 10',
+            options: ['Yes, it will print 10', 'No, SyntaxError - for is a keyword', 'No, NameError - missing variable', 'No, TypeError - wrong type'],
+            correctAnswer: 1,
+            explanation: 'The word "for" is a Python reserved keyword used for loops. You cannot use it as a variable name. Python will raise a SyntaxError: invalid syntax.'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'error-predict-2',
+            question: 'Will this code run? if x > 5 print("big")',
+            options: ['Yes, if x is greater than 5', 'No, SyntaxError - missing colon (:)', 'No, NameError - x not defined', 'No, IndentationError'],
+            correctAnswer: 1,
+            explanation: 'The if statement is missing a colon at the end. Correct syntax: if x > 5: (with colon). Also, the print should be on the next line with indentation.'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'error-predict-3',
+            question: 'What will this output? print("Hello" + 5)',
+            options: ['Hello5', 'Hello 5', 'TypeError - cannot add str and int', '5Hello'],
+            correctAnswer: 2,
+            explanation: 'You cannot concatenate a string with an integer directly. You need to convert the number to string first: print("Hello" + str(5)) or use f-strings: print(f"Hello{5}").'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'error-predict-4',
+            question: 'Will this run? class = "Mathematics"',
+            options: ['Yes, class is set to Mathematics', 'No, SyntaxError - class is a keyword', 'No, NameError - class not defined', 'Yes, but prints nothing'],
+            correctAnswer: 1,
+            explanation: 'The word "class" is a Python reserved keyword used for creating classes. You cannot use it as a variable name. Use alternatives like class_name or course_class.'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'error-predict-5',
+            question: 'What happens with: name = "Alice\\nprint(name)',
+            options: ['Prints Alice', 'SyntaxError - unclosed string', 'NameError - name not defined', 'Prints name'],
+            correctAnswer: 1,
+            explanation: 'The string "Alice starts with double quotes but never closes them (there is no closing "). This causes a SyntaxError: EOL while scanning string literal.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Quick Reference: Syntax Rules',
+            id: 'syntax-reference'
+          },
+          {
+            type: 'table',
+            headers: ['Rule', 'Correct', 'Wrong'],
+            rows: [
+              ['Variable names start with letter/underscore', 'name, _count, total_1', '1st_name, @email'],
+              ['Statements end with colon', 'if x > 5:', 'if x > 5'],
+              ['Use 4 spaces for indentation', '    print(x)', '  print(x)'],
+              ['Comparison uses ==', 'if x == 5:', 'if x = 5:'],
+              ['Strings match quotes', '"hello" or \'hello\'', '"hello\''],
+              ['No keywords as variables', 'my_class = "Math"', 'class = "Math"']
+            ]
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Pro Tip: Let Python Help You',
+            content: 'When you get an error, read the message carefully! Python tells you the line number and type of error. SyntaxError usually means you made a typo or forgot something like a colon or quote.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'variables',
             nextSection: 'data-types'
           }
         ]
@@ -1541,6 +1789,1111 @@ export const chapters: Chapter[] = [
             type: 'quiz-link',
             quizId: 'chapter-2-quiz',
             title: 'Chapter 2 Quiz'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Working with External Data',
+    description: 'Learn to handle errors gracefully, read and write files, and process CSV data for real-world BI applications',
+    icon: 'file-text',
+    estimatedTime: 120,
+    sections: [
+      {
+        id: 'error-handling-basics',
+        title: 'Understanding Errors',
+        estimatedTime: 15,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Understanding Errors in Python',
+            id: 'understanding-errors'
+          },
+          {
+            type: 'paragraph',
+            text: 'Errors are a natural part of programming. In Business Intelligence, you\'ll encounter errors when files are missing, data is malformed, or calculations fail. Learning to handle errors gracefully makes your programs robust and professional.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Why Error Handling Matters in BI',
+            content: 'When processing thousands of records, one bad value shouldn\'t crash your entire report. Proper error handling lets you log issues, use defaults, and continue processing.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Common Error Types',
+            id: 'error-types'
+          },
+          {
+            type: 'paragraph',
+            text: 'Python has different types of errors (called exceptions) for different problems. Understanding them helps you handle them appropriately.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# TypeError - wrong type for an operation\n# This would error: "Hello" + 5\n\n# ValueError - right type, wrong value\n# This would error: int("abc")\n\n# ZeroDivisionError - dividing by zero\n# This would error: 10 / 0\n\n# KeyError - dictionary key doesn\'t exist\ndata = {"name": "Alice"}\n# This would error: data["age"]\n\n# IndexError - list index out of range\nnumbers = [1, 2, 3]\n# This would error: numbers[10]\n\n# FileNotFoundError - file doesn\'t exist\n# This would error: open("missing_file.txt")\n\nprint("Error types demonstrated!")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The try-except Block',
+            id: 'try-except'
+          },
+          {
+            type: 'paragraph',
+            text: 'The try-except block lets you attempt risky code and catch errors if they occur, preventing your program from crashing.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Basic try-except structure\ntry:\n    # Code that might fail\n    result = 10 / 2\n    print(f"Result: {result}")\nexcept:\n    # What to do if it fails\n    print("An error occurred!")\n\nprint("Program continues running!")',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Catching a specific error\ndef safe_divide(a, b):\n    try:\n        result = a / b\n        return result\n    except ZeroDivisionError:\n        print("Error: Cannot divide by zero!")\n        return None\n\n# Test the function\nprint(safe_divide(10, 2))   # Works: 5.0\nprint(safe_divide(10, 0))   # Catches error, returns None\nprint(safe_divide(15, 3))   # Works: 5.0',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-error-basic',
+            question: 'What happens when Python encounters an unhandled error?',
+            options: ['The program continues with a warning', 'The program crashes and stops', 'Python automatically fixes it', 'The error is ignored'],
+            correctAnswer: 1,
+            explanation: 'Without error handling, Python stops execution and displays an error traceback. The try-except block prevents this by catching the error.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Catching Multiple Error Types',
+            id: 'multiple-errors'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Handle different errors differently\ndef get_value(data, key):\n    try:\n        value = data[key]\n        return int(value)  # Convert to integer\n    except KeyError:\n        print(f"Error: Key \'{key}\' not found")\n        return 0\n    except ValueError:\n        print(f"Error: Cannot convert \'{data[key]}\' to integer")\n        return 0\n    except TypeError:\n        print("Error: Invalid data type")\n        return 0\n\n# Test with different scenarios\nuser_data = {"age": "25", "score": "abc", "name": "Bob"}\n\nprint("Age:", get_value(user_data, "age"))      # Works: 25\nprint("Score:", get_value(user_data, "score"))  # ValueError\nprint("City:", get_value(user_data, "city"))    # KeyError',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Best Practice',
+            content: 'Always catch specific exceptions rather than using a bare except. This makes debugging easier and prevents hiding unexpected errors.'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-error-types',
+            question: 'Which error type occurs when you try to access a dictionary key that doesn\'t exist?',
+            options: ['IndexError', 'ValueError', 'KeyError', 'TypeError'],
+            correctAnswer: 2,
+            explanation: 'KeyError is raised when trying to access a dictionary key that doesn\'t exist. IndexError is for list indices, ValueError for wrong values, and TypeError for wrong types.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            nextSection: 'error-handling-advanced'
+          }
+        ]
+      },
+      {
+        id: 'error-handling-advanced',
+        title: 'Advanced Error Handling',
+        estimatedTime: 15,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Advanced Error Handling Techniques',
+            id: 'advanced-error-handling'
+          },
+          {
+            type: 'paragraph',
+            text: 'Now that you understand basic error handling, let\'s explore more powerful techniques that are essential for production-quality code.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The else Clause',
+            id: 'else-clause'
+          },
+          {
+            type: 'paragraph',
+            text: 'The else clause runs only if no exception occurred. It\'s useful for code that should only execute on success.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# try-except-else pattern\ndef process_number(text):\n    try:\n        number = int(text)\n    except ValueError:\n        print(f"Could not convert \'{text}\' to integer")\n        return None\n    else:\n        # Only runs if no exception occurred\n        print(f"Successfully converted to: {number}")\n        return number * 2\n\n# Test it\nresult1 = process_number("42")     # Success path\nresult2 = process_number("hello")  # Error path\n\nprint(f"Result 1: {result1}")\nprint(f"Result 2: {result2}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The finally Clause',
+            id: 'finally-clause'
+          },
+          {
+            type: 'paragraph',
+            text: 'The finally clause ALWAYS runs, whether an exception occurred or not. It\'s perfect for cleanup tasks like closing files or database connections.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# try-except-finally pattern\ndef risky_operation(value):\n    print("Starting operation...")\n    try:\n        result = 100 / value\n        print(f"Calculation result: {result}")\n    except ZeroDivisionError:\n        print("ERROR: Division by zero!")\n    finally:\n        # This ALWAYS runs\n        print("Cleanup complete.")\n        print("-" * 30)\n\n# Test with both success and failure\nrisky_operation(5)   # Success\nrisky_operation(0)   # Error - but finally still runs!',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-finally',
+            question: 'When does the finally block execute?',
+            options: ['Only when an error occurs', 'Only when no error occurs', 'Always, regardless of errors', 'Never automatically'],
+            correctAnswer: 2,
+            explanation: 'The finally block ALWAYS executes, whether an exception occurred or not. This makes it ideal for cleanup operations like closing files.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Accessing Error Information',
+            id: 'error-info'
+          },
+          {
+            type: 'paragraph',
+            text: 'You can capture the error object to get more details about what went wrong.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Capturing error details with "as"\ndef safe_convert(values):\n    results = []\n    errors = []\n    \n    for i, val in enumerate(values):\n        try:\n            results.append(float(val))\n        except ValueError as e:\n            # Capture the error message\n            errors.append(f"Index {i}: {e}")\n            results.append(None)\n    \n    return results, errors\n\n# Process mixed data\ndata = ["10", "20.5", "abc", "30", "xyz", "40.0"]\nnumbers, error_log = safe_convert(data)\n\nprint("Converted values:", numbers)\nprint("\\nErrors encountered:")\nfor error in error_log:\n    print(f"  - {error}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Raising Your Own Errors',
+            id: 'raising-errors'
+          },
+          {
+            type: 'paragraph',
+            text: 'You can raise your own exceptions when input is invalid or conditions aren\'t met.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Raising exceptions for validation\ndef calculate_discount(price, discount_rate):\n    # Validate inputs\n    if price < 0:\n        raise ValueError("Price cannot be negative")\n    if discount_rate < 0 or discount_rate > 1:\n        raise ValueError("Discount rate must be between 0 and 1")\n    \n    return price * (1 - discount_rate)\n\n# Test with valid input\ntry:\n    result = calculate_discount(100, 0.20)\n    print(f"Discounted price: ${result:.2f}")\nexcept ValueError as e:\n    print(f"Validation error: {e}")\n\n# Test with invalid input\ntry:\n    result = calculate_discount(100, 1.5)  # Invalid rate\n    print(f"Discounted price: ${result:.2f}")\nexcept ValueError as e:\n    print(f"Validation error: {e}")',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-raise',
+            question: 'What does the "raise" keyword do in Python?',
+            options: ['Increases a number value', 'Creates a new exception and throws it', 'Catches an existing error', 'Ignores an error'],
+            correctAnswer: 1,
+            explanation: 'The "raise" keyword creates and throws an exception. It\'s used to signal that something went wrong, typically for input validation.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Practical BI Example',
+            id: 'bi-example'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Complete error handling example for BI\ndef process_sales_record(record):\n    """\n    Process a single sales record with full error handling.\n    Returns processed data or None with error message.\n    """\n    errors = []\n    \n    try:\n        # Extract and validate fields\n        product = record.get("product", "Unknown")\n        \n        # Handle price\n        try:\n            price = float(record.get("price", 0))\n            if price < 0:\n                errors.append("Negative price corrected to 0")\n                price = 0\n        except (ValueError, TypeError):\n            errors.append(f"Invalid price: {record.get(\'price\')}")\n            price = 0\n        \n        # Handle quantity\n        try:\n            qty = int(record.get("quantity", 0))\n            if qty < 0:\n                qty = 0\n                errors.append("Negative quantity corrected to 0")\n        except (ValueError, TypeError):\n            errors.append(f"Invalid quantity: {record.get(\'quantity\')}")\n            qty = 0\n        \n        # Calculate total\n        total = price * qty\n        \n        return {\n            "product": product,\n            "price": price,\n            "quantity": qty,\n            "total": total,\n            "errors": errors,\n            "valid": len(errors) == 0\n        }\n        \n    except Exception as e:\n        return {\n            "product": "ERROR",\n            "price": 0,\n            "quantity": 0,\n            "total": 0,\n            "errors": [str(e)],\n            "valid": False\n        }\n\n# Test with various records\nrecords = [\n    {"product": "Widget A", "price": "29.99", "quantity": "5"},\n    {"product": "Widget B", "price": "invalid", "quantity": "3"},\n    {"product": "Widget C", "price": "15.00", "quantity": "-2"},\n    {"product": "Widget D"}, # Missing fields\n]\n\nprint("Processing Sales Records")\nprint("=" * 50)\n\nfor record in records:\n    result = process_sales_record(record)\n    status = "✓" if result["valid"] else "✗"\n    print(f"{status} {result[\'product\']}: ${result[\'total\']:.2f}")\n    for error in result["errors"]:\n        print(f"    Warning: {error}")',
+            executable: true
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-3-error-handling-exercise',
+            title: 'Practice: Robust Data Validator'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'error-handling-basics',
+            nextSection: 'file-reading'
+          }
+        ]
+      },
+      {
+        id: 'file-reading',
+        title: 'Reading Files',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Reading Files in Python',
+            id: 'reading-files'
+          },
+          {
+            type: 'paragraph',
+            text: 'Files are the foundation of data processing. In BI, you\'ll read data from text files, CSVs, logs, and more. Python makes file handling straightforward with built-in functions.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'File Paths',
+            content: 'File paths can be relative (to your script location) or absolute (full path from root). Use forward slashes (/) in Python, even on Windows, or use raw strings (r"path").'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Opening and Reading Files',
+            id: 'open-read'
+          },
+          {
+            type: 'paragraph',
+            text: 'The open() function opens a file, and there are several ways to read its contents.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Basic file reading pattern\n# Note: This is a demonstration - actual file operations\n# require a real file to exist\n\n# Simulating file content for demonstration\nsample_content = """Product,Price,Quantity\nWidget A,29.99,100\nWidget B,49.99,50\nWidget C,19.99,200"""\n\n# In real code, you would use:\n# with open("data.txt", "r") as file:\n#     content = file.read()\n\n# For now, let\'s work with our sample:\nprint("File content:")\nprint(sample_content)\nprint()\nprint("Content type:", type(sample_content))\nprint("Content length:", len(sample_content), "characters")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The with Statement',
+            id: 'with-statement'
+          },
+          {
+            type: 'paragraph',
+            text: 'The "with" statement ensures files are properly closed, even if errors occur. Always use it when working with files.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# The with statement pattern\n# with open("filename.txt", "r") as file:\n#     content = file.read()\n# File is automatically closed here!\n\n# Mode options:\n# "r" - Read (default) - file must exist\n# "w" - Write - creates new file or overwrites\n# "a" - Append - adds to end of file\n# "r+" - Read and Write\n\nprint("File open modes:")\nprint("  \'r\' - Read mode (default)")\nprint("  \'w\' - Write mode (overwrites)")\nprint("  \'a\' - Append mode (adds to end)")\nprint("  \'r+\' - Read and write mode")',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-file-open',
+            question: 'What does the "with" statement do when opening files?',
+            options: ['Opens the file faster', 'Automatically closes the file when done', 'Prevents all errors', 'Encrypts the file content'],
+            correctAnswer: 1,
+            explanation: 'The "with" statement creates a context manager that automatically closes the file when the block ends, even if an error occurs. This prevents resource leaks.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Reading Methods',
+            id: 'reading-methods'
+          },
+          {
+            type: 'paragraph',
+            text: 'Python offers different ways to read file content depending on your needs.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Different ways to read files\n# Simulating file content\nfile_content = """Line 1: Hello World\nLine 2: Python is great\nLine 3: Data processing\nLine 4: Business Intelligence"""\n\n# Method 1: read() - entire file as one string\nprint("1. read() - entire content:")\nprint(file_content[:50] + "...")\nprint()\n\n# Method 2: readlines() - list of lines\nlines = file_content.split("\\n")  # Simulating readlines()\nprint("2. readlines() - list of lines:")\nprint(lines)\nprint()\n\n# Method 3: readline() - one line at a time\nprint("3. readline() - one at a time:")\nfor line in lines[:2]:\n    print(f"  Got: {line}")',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Processing lines in a file\nlog_data = """2024-01-15 10:30:00 INFO User login: alice\n2024-01-15 10:31:15 ERROR Database connection failed\n2024-01-15 10:31:20 INFO Retry successful\n2024-01-15 10:32:00 WARNING Low memory: 85%\n2024-01-15 10:33:00 INFO User login: bob"""\n\n# Process each line\nlines = log_data.strip().split("\\n")\n\nprint("Log Analysis")\nprint("=" * 40)\n\nerror_count = 0\nwarning_count = 0\ninfo_count = 0\n\nfor line in lines:\n    if "ERROR" in line:\n        error_count += 1\n        print(f"🔴 {line}")\n    elif "WARNING" in line:\n        warning_count += 1\n        print(f"🟡 {line}")\n    else:\n        info_count += 1\n        print(f"🟢 {line}")\n\nprint("=" * 40)\nprint(f"Summary: {info_count} INFO, {warning_count} WARNING, {error_count} ERROR")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Handling File Errors',
+            id: 'file-errors'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Always handle potential file errors\ndef read_file_safely(filename):\n    """\n    Safely read a file with proper error handling.\n    Returns content and success status.\n    """\n    try:\n        # In real code:\n        # with open(filename, "r") as file:\n        #     content = file.read()\n        # return content, True\n        \n        # Simulation for demo:\n        if filename == "exists.txt":\n            return "File content here!", True\n        else:\n            raise FileNotFoundError(f"No such file: {filename}")\n            \n    except FileNotFoundError as e:\n        print(f"Error: File not found - {filename}")\n        return None, False\n    except PermissionError:\n        print(f"Error: No permission to read {filename}")\n        return None, False\n    except Exception as e:\n        print(f"Error reading file: {e}")\n        return None, False\n\n# Test with different files\nfiles = ["exists.txt", "missing.txt", "data.csv"]\n\nfor f in files:\n    content, success = read_file_safely(f)\n    if success:\n        print(f"Successfully read {f}: {content}")\n    print()',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-file-error',
+            question: 'Which exception is raised when you try to open a file that doesn\'t exist?',
+            options: ['ValueError', 'FileNotFoundError', 'IOError', 'KeyError'],
+            correctAnswer: 1,
+            explanation: 'FileNotFoundError is raised when trying to open a file that doesn\'t exist. It\'s a common error to handle in file processing code.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'error-handling-advanced',
+            nextSection: 'file-writing'
+          }
+        ]
+      },
+      {
+        id: 'file-writing',
+        title: 'Writing Files',
+        estimatedTime: 15,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Writing Files in Python',
+            id: 'writing-files'
+          },
+          {
+            type: 'paragraph',
+            text: 'Writing files is essential for saving processed data, generating reports, and creating output files. Python\'s file writing is just as simple as reading.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Write Mode vs Append Mode',
+            id: 'write-vs-append'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Write mode ("w") - creates new file or OVERWRITES existing\n# with open("output.txt", "w") as file:\n#     file.write("Hello World!")\n\n# Append mode ("a") - adds to end of existing file\n# with open("output.txt", "a") as file:\n#     file.write("More content!")\n\nprint("File Writing Modes:")\nprint()\nprint("WRITE mode (\'w\'):")\nprint("  - Creates new file if doesn\'t exist")\nprint("  - OVERWRITES if file exists!")\nprint("  - Use for creating fresh outputs")\nprint()\nprint("APPEND mode (\'a\'):")\nprint("  - Creates new file if doesn\'t exist")\nprint("  - Adds to END of existing file")\nprint("  - Use for logs, accumulating data")',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'warning',
+            title: 'Caution with Write Mode',
+            content: 'Write mode ("w") will completely overwrite existing files without warning! Always double-check filenames or use append mode when you want to preserve existing content.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Writing Methods',
+            id: 'writing-methods'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Different ways to write content\n\n# Method 1: write() - write a string\n# file.write("Single line\\n")\n\n# Method 2: writelines() - write list of strings\n# file.writelines(["Line 1\\n", "Line 2\\n", "Line 3\\n"])\n\n# Simulating file writing for demonstration\noutput = []\n\n# Writing multiple lines\ndata = [\n    "Product Report",\n    "=" * 30,\n    "Widget A: $29.99",\n    "Widget B: $49.99",\n    "Widget C: $19.99",\n    "=" * 30,\n    "Total: $99.97"\n]\n\nfor line in data:\n    output.append(line)\n    print(f"Writing: {line}")\n\nprint("\\n" + "-" * 40)\nprint("Final file content:")\nprint("\\n".join(output))',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-write-mode',
+            question: 'What happens if you open an existing file with mode "w"?',
+            options: ['An error is raised', 'Content is added to the end', 'The file content is completely erased', 'Nothing changes'],
+            correctAnswer: 2,
+            explanation: 'Write mode ("w") completely erases the existing content and starts fresh. If you want to keep existing content and add more, use append mode ("a").'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Generating Reports',
+            id: 'generating-reports'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Generate a formatted report\ndef generate_report(data, title):\n    """\n    Generate a formatted text report.\n    Returns the report as a string.\n    """\n    lines = []\n    \n    # Header\n    lines.append("=" * 50)\n    lines.append(title.center(50))\n    lines.append("=" * 50)\n    lines.append("")\n    \n    # Data rows\n    total = 0\n    for item, value in data.items():\n        lines.append(f"{item:<30} ${value:>10,.2f}")\n        total += value\n    \n    # Footer\n    lines.append("-" * 50)\n    lines.append(f"{\'TOTAL\':<30} ${total:>10,.2f}")\n    lines.append("=" * 50)\n    \n    return "\\n".join(lines)\n\n# Generate the report\nsales_data = {\n    "North Region": 125000,\n    "South Region": 98000,\n    "East Region": 142000,\n    "West Region": 156000\n}\n\nreport = generate_report(sales_data, "QUARTERLY SALES REPORT")\nprint(report)\n\n# In real code, you would save it:\n# with open("report.txt", "w") as f:\n#     f.write(report)',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Practical Example: Log Writer',
+            id: 'log-writer'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# A simple logging function\nfrom datetime import datetime\n\nclass SimpleLogger:\n    def __init__(self):\n        self.logs = []\n    \n    def log(self, level, message):\n        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")\n        entry = f"{timestamp} [{level}] {message}"\n        self.logs.append(entry)\n        print(entry)  # Also print to console\n    \n    def info(self, message):\n        self.log("INFO", message)\n    \n    def warning(self, message):\n        self.log("WARNING", message)\n    \n    def error(self, message):\n        self.log("ERROR", message)\n    \n    def get_all_logs(self):\n        return "\\n".join(self.logs)\n\n# Use the logger\nlogger = SimpleLogger()\n\nlogger.info("Application started")\nlogger.info("Processing sales data...")\nlogger.warning("Missing values in row 5")\nlogger.info("Processing complete")\nlogger.error("Failed to send email notification")\nlogger.info("Application finished")\n\nprint("\\n" + "=" * 50)\nprint("Complete log file content:")\nprint("=" * 50)\nprint(logger.get_all_logs())',
+            executable: true
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-3-file-writing-exercise',
+            title: 'Practice: Report Generator'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'file-reading',
+            nextSection: 'csv-basics'
+          }
+        ]
+      },
+      {
+        id: 'csv-basics',
+        title: 'CSV Basics',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Working with CSV Files',
+            id: 'csv-basics'
+          },
+          {
+            type: 'paragraph',
+            text: 'CSV (Comma-Separated Values) is the most common format for tabular data exchange. Every BI professional needs to master CSV handling. Python\'s built-in csv module makes this easy.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'What is CSV?',
+            content: 'CSV files store table data as plain text, with each row on a new line and columns separated by commas. They can be opened in Excel, databases, and any text editor.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Understanding CSV Structure',
+            id: 'csv-structure'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# What a CSV file looks like\ncsv_content = """product_id,product_name,price,quantity\n1001,Widget A,29.99,100\n1002,Widget B,49.99,50\n1003,Widget C,19.99,200\n1004,Widget D,39.99,75"""\n\nprint("Raw CSV content:")\nprint(csv_content)\nprint()\nprint("Structure breakdown:")\nprint("- First line: Column headers")\nprint("- Following lines: Data rows")\nprint("- Comma separates each value")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Reading CSV Files',
+            id: 'reading-csv'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Simulating CSV reading (in real code, use csv module)\n\n# Sample CSV data\ncsv_data = \"\"\"name,department,salary\nAlice,Engineering,85000\nBob,Sales,72000\nCarol,Marketing,68000\nDavid,Engineering,92000\nEve,Sales,78000\"\"\"\n\n# Parse CSV manually (to understand the concept)\nlines = csv_data.strip().split("\\n")\nheaders = lines[0].split(",")\nrows = []\n\nfor line in lines[1:]:\n    values = line.split(",")\n    row = dict(zip(headers, values))\n    rows.append(row)\n\n# Display parsed data\nprint("Headers:", headers)\nprint()\nprint("Parsed rows:")\nfor row in rows:\n    print(f"  {row[\'name\']} - {row[\'department\']} - ${row[\'salary\']}")\n\nprint(f"\\nTotal records: {len(rows)}")',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-csv-structure',
+            question: 'In a standard CSV file, what separates the values in each row?',
+            options: ['Tabs', 'Commas', 'Semicolons', 'Spaces'],
+            correctAnswer: 1,
+            explanation: 'CSV stands for Comma-Separated Values. While other delimiters can be used (like semicolons in some locales), commas are the standard separator.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Using the csv Module',
+            id: 'csv-module'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Python\'s csv module provides robust CSV handling\nimport csv\nfrom io import StringIO  # For demo purposes\n\n# Sample CSV data\ncsv_text = \"\"\"product,price,quantity\nLaptop,999.99,25\nMouse,29.99,150\nKeyboard,79.99,80\nMonitor,299.99,40\"\"\"\n\n# Use csv.reader for simple reading\nprint("Using csv.reader:")\nprint("-" * 40)\n\nreader = csv.reader(StringIO(csv_text))\nheader = next(reader)  # Get header row\nprint(f"Headers: {header}")\n\nfor row in reader:\n    product, price, qty = row\n    print(f"  {product}: ${price} x {qty}")',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# csv.DictReader - access columns by name (recommended!)\nimport csv\nfrom io import StringIO\n\ncsv_text = \"\"\"product,price,quantity\nLaptop,999.99,25\nMouse,29.99,150\nKeyboard,79.99,80\nMonitor,299.99,40\"\"\"\n\nprint("Using csv.DictReader:")\nprint("-" * 40)\n\nreader = csv.DictReader(StringIO(csv_text))\n\ntotal_value = 0\nfor row in reader:\n    # Access by column name - much clearer!\n    product = row[\'product\']\n    price = float(row[\'price\'])\n    quantity = int(row[\'quantity\'])\n    value = price * quantity\n    total_value += value\n    \n    print(f"{product}: {quantity} units @ ${price:.2f} = ${value:,.2f}")\n\nprint("-" * 40)\nprint(f"Total inventory value: ${total_value:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-dictreader',
+            question: 'What is the advantage of csv.DictReader over csv.reader?',
+            options: ['It\'s faster', 'It lets you access columns by name', 'It handles errors automatically', 'It works with larger files'],
+            correctAnswer: 1,
+            explanation: 'DictReader converts each row into a dictionary, so you can access values by column name (row["price"]) instead of index (row[1]). This makes code more readable and maintainable.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Handling CSV Edge Cases',
+            id: 'csv-edge-cases'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# CSV files often have messy data\nimport csv\nfrom io import StringIO\n\n# CSV with quoted fields and commas inside values\ncsv_text = \"\"\"name,description,price\nWidget A,"A great, useful product",29.99\nWidget B,"Contains ""quotes"" inside",49.99\nWidget C,Simple description,19.99\"\"\"\n\nprint("CSV with special characters:")\nprint(csv_text)\nprint()\n\nprint("Properly parsed:")\nprint("-" * 50)\nreader = csv.DictReader(StringIO(csv_text))\nfor row in reader:\n    print(f"Name: {row[\'name\']}")\n    print(f"  Desc: {row[\'description\']}")\n    print(f"  Price: ${row[\'price\']}")\n    print()',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Always Use the csv Module',
+            content: 'Never split CSV by comma manually! Real CSV files have quoted fields, escaped characters, and special cases. The csv module handles all of this correctly.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'file-writing',
+            nextSection: 'csv-processing'
+          }
+        ]
+      },
+      {
+        id: 'csv-processing',
+        title: 'Processing CSV Data',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Processing CSV Data',
+            id: 'processing-csv'
+          },
+          {
+            type: 'paragraph',
+            text: 'Now that you understand CSV basics, let\'s build practical data processing pipelines that filter, transform, and analyze CSV data.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Filtering and Transforming Data',
+            id: 'filter-transform'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Complete CSV processing example\nimport csv\nfrom io import StringIO\n\n# Sales data\nsales_csv = """date,product,region,amount,units\n2024-01-15,Laptop,North,2499.99,2\n2024-01-15,Mouse,South,89.97,3\n2024-01-16,Keyboard,North,159.98,2\n2024-01-16,Monitor,East,599.98,2\n2024-01-17,Laptop,West,1249.99,1\n2024-01-17,Mouse,North,59.98,2\n2024-01-18,Keyboard,South,239.97,3"""\n\n# Read and process\nreader = csv.DictReader(StringIO(sales_csv))\nsales = list(reader)\n\nprint(f"Total records: {len(sales)}")\nprint()\n\n# Filter: Only North region\nnorth_sales = [s for s in sales if s[\'region\'] == \'North\']\nprint(f"North region sales: {len(north_sales)} records")\nfor sale in north_sales:\n    print(f"  {sale[\'date\']}: {sale[\'product\']} - ${sale[\'amount\']}")\n\n# Calculate totals by region\nprint("\\nSales by Region:")\nprint("-" * 30)\nregions = {}\nfor sale in sales:\n    region = sale[\'region\']\n    amount = float(sale[\'amount\'])\n    regions[region] = regions.get(region, 0) + amount\n\nfor region, total in sorted(regions.items()):\n    print(f"  {region}: ${total:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Aggregating Data',
+            id: 'aggregating'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Group and aggregate CSV data\nimport csv\nfrom io import StringIO\n\nemployee_csv = """name,department,salary,years\nAlice,Engineering,85000,5\nBob,Sales,72000,3\nCarol,Engineering,92000,7\nDavid,Marketing,68000,2\nEve,Sales,78000,4\nFrank,Engineering,88000,6\nGrace,Marketing,71000,3"""\n\nreader = csv.DictReader(StringIO(employee_csv))\nemployees = list(reader)\n\n# Aggregate by department\ndepartments = {}\n\nfor emp in employees:\n    dept = emp[\'department\']\n    salary = int(emp[\'salary\'])\n    \n    if dept not in departments:\n        departments[dept] = {\n            \'count\': 0,\n            \'total_salary\': 0,\n            \'salaries\': []\n        }\n    \n    departments[dept][\'count\'] += 1\n    departments[dept][\'total_salary\'] += salary\n    departments[dept][\'salaries\'].append(salary)\n\n# Generate summary\nprint("Department Summary")\nprint("=" * 50)\n\nfor dept, data in departments.items():\n    avg_salary = data[\'total_salary\'] / data[\'count\']\n    min_salary = min(data[\'salaries\'])\n    max_salary = max(data[\'salaries\'])\n    \n    print(f"\\n{dept}:")\n    print(f"  Employees: {data[\'count\']}")\n    print(f"  Total Payroll: ${data[\'total_salary\']:,}")\n    print(f"  Average Salary: ${avg_salary:,.0f}")\n    print(f"  Salary Range: ${min_salary:,} - ${max_salary:,}")',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-aggregation',
+            question: 'What does aggregation mean in data processing?',
+            options: ['Deleting duplicate records', 'Combining multiple values into a summary (sum, average, count)', 'Sorting data alphabetically', 'Converting data types'],
+            correctAnswer: 1,
+            explanation: 'Aggregation combines multiple values into summary statistics like sum, average, count, min, or max. It\'s essential for reporting and analysis.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Writing CSV Output',
+            id: 'writing-csv'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Writing CSV files\nimport csv\nfrom io import StringIO\n\n# Data to write\nsales_report = [\n    {\'product\': \'Laptop\', \'units\': 45, \'revenue\': 44999.55},\n    {\'product\': \'Mouse\', \'units\': 230, \'revenue\': 6899.70},\n    {\'product\': \'Keyboard\', \'units\': 120, \'revenue\': 9599.80},\n    {\'product\': \'Monitor\', \'units\': 65, \'revenue\': 19499.35}\n]\n\n# Write to a string (in real code, write to file)\noutput = StringIO()\n\n# Use DictWriter for clean output\nfieldnames = [\'product\', \'units\', \'revenue\']\nwriter = csv.DictWriter(output, fieldnames=fieldnames)\n\nwriter.writeheader()  # Write column names\nwriter.writerows(sales_report)  # Write all data rows\n\n# Show the result\nprint(\"Generated CSV file:\")\nprint(\"-\" * 40)\nprint(output.getvalue())\n\n# In real code:\n# with open(\"report.csv\", \"w\", newline=\"\") as f:\n#     writer = csv.DictWriter(f, fieldnames=fieldnames)\n#     writer.writeheader()\n#     writer.writerows(sales_report)',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Complete Processing Pipeline',
+            id: 'complete-pipeline'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Complete data processing pipeline\nimport csv\nfrom io import StringIO\n\n# Input data\nraw_csv = \"\"\"order_id,customer,product,quantity,unit_price\n1001,Alice,Widget A,5,29.99\n1002,Bob,Widget B,3,49.99\n1003,Alice,Widget C,10,19.99\n1004,Carol,Widget A,2,29.99\n1005,Bob,Widget A,7,29.99\n1006,Carol,Widget B,1,49.99\n1007,Alice,Widget B,4,49.99\"\"\"\n\ndef process_orders(csv_data):\n    \"\"\"Process orders and return customer summary.\"\"\"\n    reader = csv.DictReader(StringIO(csv_data))\n    \n    customers = {}\n    \n    for order in reader:\n        customer = order[\'customer\']\n        quantity = int(order[\'quantity\'])\n        unit_price = float(order[\'unit_price\'])\n        total = quantity * unit_price\n        \n        if customer not in customers:\n            customers[customer] = {\n                \'orders\': 0,\n                \'items\': 0,\n                \'total_spent\': 0\n            }\n        \n        customers[customer][\'orders\'] += 1\n        customers[customer][\'items\'] += quantity\n        customers[customer][\'total_spent\'] += total\n    \n    return customers\n\ndef generate_customer_report(customers):\n    \"\"\"Generate a formatted customer report.\"\"\"\n    output = []\n    output.append(\"=\" * 55)\n    output.append(\"CUSTOMER ANALYSIS REPORT\".center(55))\n    output.append(\"=\" * 55)\n    output.append(f\"{\'Customer\':<15} {\'Orders\':<10} {\'Items\':<10} {\'Total Spent\':<15}\")\n    output.append(\"-\" * 55)\n    \n    grand_total = 0\n    for customer, data in sorted(customers.items()):\n        output.append(\n            f\"{customer:<15} {data[\'orders\']:<10} {data[\'items\']:<10} ${data[\'total_spent\']:>12,.2f}\"\n        )\n        grand_total += data[\'total_spent\']\n    \n    output.append(\"-\" * 55)\n    output.append(f\"{\'TOTAL\':<35} ${grand_total:>12,.2f}\")\n    output.append(\"=\" * 55)\n    \n    return \"\\n\".join(output)\n\n# Run the pipeline\ncustomer_data = process_orders(raw_csv)\nreport = generate_customer_report(customer_data)\nprint(report)',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-pipeline',
+            question: 'What is a data processing pipeline?',
+            options: ['A physical tube for data', 'A sequence of steps that transform data from input to output', 'A type of database', 'A Python library'],
+            correctAnswer: 1,
+            explanation: 'A data pipeline is a series of processing steps (read, clean, transform, aggregate, output) that convert raw data into useful information.'
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-3-csv-exercise',
+            title: 'Practice: Sales Data Analyzer'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'csv-basics',
+            nextSection: 'data-pipeline'
+          }
+        ]
+      },
+      {
+        id: 'data-pipeline',
+        title: 'Building a Data Pipeline',
+        estimatedTime: 25,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Building a Complete Data Pipeline',
+            id: 'data-pipeline'
+          },
+          {
+            type: 'paragraph',
+            text: 'Let\'s combine everything you\'ve learned into a production-quality data processing pipeline with proper error handling, logging, and reporting.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Pipeline Architecture',
+            content: 'A robust pipeline has these stages: 1) Read input data, 2) Validate and clean, 3) Transform and calculate, 4) Aggregate, 5) Generate output.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The Pipeline Class',
+            id: 'pipeline-class'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Building a reusable data pipeline\nfrom datetime import datetime\n\nclass DataPipeline:\n    """A robust data processing pipeline."""\n    \n    def __init__(self, name):\n        self.name = name\n        self.logs = []\n        self.errors = []\n    \n    def log(self, message, level="INFO"):\n        timestamp = datetime.now().strftime("%H:%M:%S")\n        entry = f"[{timestamp}] {level}: {message}"\n        self.logs.append(entry)\n        print(entry)\n    \n    def process(self, data):\n        raise NotImplementedError("Subclasses must implement process()")\n\n# Test the base class\npipeline = DataPipeline("Test Pipeline")\npipeline.log("Pipeline initialized")\npipeline.log("Ready for processing")\nprint(f"\\nPipeline name: {pipeline.name}")\nprint(f"Logs collected: {len(pipeline.logs)}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Sales Analytics Pipeline',
+            id: 'sales-pipeline'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Sales Analytics Pipeline - Simplified Example\nfrom datetime import datetime\n\nclass SalesPipeline:\n    """Process sales data with logging."""\n    \n    def __init__(self):\n        self.logs = []\n        self.results = {}\n    \n    def log(self, msg):\n        ts = datetime.now().strftime("%H:%M:%S")\n        entry = f"[{ts}] {msg}"\n        self.logs.append(entry)\n        print(entry)\n    \n    def process(self, data):\n        """Process a list of sales records."""\n        self.log("Starting processing...")\n        \n        by_region = {}\n        total = 0\n        \n        for record in data:\n            region = record["region"]\n            amount = record["amount"]\n            \n            if region not in by_region:\n                by_region[region] = 0\n            by_region[region] += amount\n            total += amount\n        \n        self.results = {\n            "by_region": by_region,\n            "total": total,\n            "count": len(data)\n        }\n        self.log("Processing complete!")\n        return self.results\n\n# Test the pipeline\ntest_data = [\n    {"region": "North", "amount": 1000},\n    {"region": "South", "amount": 800},\n    {"region": "North", "amount": 1200}\n]\n\npipeline = SalesPipeline()\nresults = pipeline.process(test_data)\n\nprint("\\nResults:")\nfor region, amount in results["by_region"].items():\n    print(f"  {region}: ${amount:,.2f}")\nprint(f"\\nTotal: ${results[\"total\"]:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Running the Pipeline',
+            id: 'running-pipeline'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Running a Complete Pipeline with Error Handling\nimport csv\nfrom io import StringIO\n\ndef process_csv_pipeline(csv_text):\n    """Complete pipeline: read, validate, aggregate, report."""\n    \n    print("=" * 50)\n    print("PIPELINE STARTED")\n    print("=" * 50)\n    \n    # Stage 1: Read data\n    reader = csv.DictReader(StringIO(csv_text))\n    records = list(reader)\n    print(f"Read {len(records)} records")\n    \n    # Stage 2: Process with error handling\n    by_region = {}\n    processed = 0\n    errors = 0\n    \n    for record in records:\n        try:\n            region = record["region"]\n            amount = float(record["amount"])\n            by_region[region] = by_region.get(region, 0) + amount\n            processed += 1\n        except (ValueError, KeyError) as e:\n            errors += 1\n            print(f"  Warning: Skipped bad record - {e}")\n    \n    # Stage 3: Generate report\n    print("\\n" + "=" * 50)\n    print("RESULTS")\n    print("=" * 50)\n    print(f"\\nProcessed: {processed}, Errors: {errors}")\n    print("\\nSales by Region:")\n    \n    total = 0\n    for region, amount in sorted(by_region.items()):\n        print(f"  {region}: ${amount:,.2f}")\n        total += amount\n    \n    print(f"\\nTotal Revenue: ${total:,.2f}")\n    return by_region\n\n# Test data with one bad record\ntest_csv = """region,product,amount\nNorth,Laptop,2499.99\nSouth,Mouse,89.97\nNorth,Keyboard,159.98\nEast,Monitor,599.98\nWest,Laptop,1249.99\nbad_row,invalid,not_a_number"""\n\nresults = process_csv_pipeline(test_csv)',
+            executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-pipeline-stages',
+            question: 'What is the typical order of stages in a data pipeline?',
+            options: ['Output → Process → Input', 'Process → Validate → Read', 'Read → Validate → Transform → Aggregate → Output', 'Aggregate → Transform → Read'],
+            correctAnswer: 2,
+            explanation: 'A pipeline flows from input to output: Read (get data) → Validate (check quality) → Transform (clean/calculate) → Aggregate (summarize) → Output (report/save).'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Best Practices Summary',
+            id: 'best-practices'
+          },
+          {
+            type: 'list',
+            ordered: true,
+            items: [
+              'Always use try-except for error handling, especially in data processing',
+              'Log important events and errors for debugging',
+              'Validate data early - catch problems before processing',
+              'Use csv.DictReader for readable, maintainable code',
+              'Close files properly (use the with statement)',
+              'Generate clear reports with formatted output',
+              'Build reusable functions and classes',
+              'Handle edge cases: missing files, empty data, malformed records'
+            ]
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Next Steps',
+            content: 'Once you\'re comfortable with basic file and CSV handling, explore the pandas library for advanced data analysis. It provides DataFrames that make complex operations simple!'
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-3-pipeline-exercise',
+            title: 'Practice: Build Your Own Data Pipeline'
+          },
+          {
+            type: 'quiz-link',
+            quizId: 'chapter-3-quiz',
+            title: 'Chapter 3 Quiz: Working with External Data'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: false,
+            showBack: true,
+            prevSection: 'csv-processing'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Data Analysis with Pandas',
+    description: 'Introduction to the pandas library for powerful data manipulation and analysis with DataFrames',
+    icon: 'table',
+    estimatedTime: 120,
+    sections: [
+      {
+        id: 'pandas-intro',
+        title: 'Introduction to Pandas',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Pandas for Data Analysis',
+            id: 'pandas-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: Installing pandas, creating DataFrames, loading data from CSV/Excel, basic DataFrame operations, selecting and filtering data, and working with columns and rows.'
+          },
+          {
+            type: 'paragraph',
+            text: 'Pandas is the most popular Python library for data analysis. It provides the DataFrame structure that makes working with tabular data intuitive and efficient.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'What is Pandas and why it matters for BI',
+              'Series and DataFrames explained',
+              'Reading data from various sources',
+              'Basic data exploration methods',
+              'Selecting data with loc and iloc'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: 'Data Cleaning & Transformation',
+    description: 'Learn to clean messy data, handle missing values, and transform data for analysis',
+    icon: 'filter',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'data-cleaning-intro',
+        title: 'Data Cleaning Fundamentals',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Data Cleaning',
+            id: 'data-cleaning-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: Handling missing values (NaN), removing duplicates, data type conversions, string cleaning methods, and data validation techniques.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Identifying and handling missing data',
+              'Removing duplicate records',
+              'Converting data types',
+              'Cleaning string data',
+              'Validating data quality'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: 'Data Aggregation & Grouping',
+    description: 'Master groupby operations, pivot tables, and aggregation for powerful data summarization',
+    icon: 'layers',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'groupby-intro',
+        title: 'GroupBy Operations',
+        estimatedTime: 25,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Aggregation & Grouping',
+            id: 'groupby-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: GroupBy operations, aggregation functions (sum, mean, count), pivot tables, cross-tabulations, and multi-level grouping.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Understanding groupby mechanics',
+              'Aggregation functions',
+              'Multiple aggregations with agg()',
+              'Pivot tables and reshaping data',
+              'Real-world BI aggregation examples'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: 'Data Visualization',
+    description: 'Create compelling charts and visualizations using Matplotlib and Seaborn',
+    icon: 'bar-chart',
+    estimatedTime: 120,
+    sections: [
+      {
+        id: 'visualization-intro',
+        title: 'Introduction to Visualization',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Data Visualization',
+            id: 'visualization-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: Matplotlib basics, line charts, bar charts, histograms, scatter plots, pie charts, customizing visualizations, and creating dashboards.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Matplotlib fundamentals',
+              'Common chart types for BI',
+              'Customizing colors, labels, and legends',
+              'Creating subplots and figures',
+              'Saving and exporting visualizations'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: 'Working with Dates & Time Series',
+    description: 'Handle datetime data, time-based analysis, and trend visualization for business insights',
+    icon: 'calendar',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'datetime-intro',
+        title: 'DateTime Fundamentals',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Dates & Time Series',
+            id: 'datetime-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: Python datetime module, parsing dates, date arithmetic, time zones, resampling time series, moving averages, and trend analysis.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Working with datetime objects',
+              'Parsing date strings',
+              'Date calculations and timedelta',
+              'Time series indexing in pandas',
+              'Resampling and rolling windows'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: 'Connecting to Databases',
+    description: 'Learn to connect to SQL databases, execute queries, and integrate database data with Python',
+    icon: 'database',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'database-intro',
+        title: 'Database Connections',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Database Connections',
+            id: 'database-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: SQL basics, connecting to SQLite/PostgreSQL/MySQL, executing queries, reading data into DataFrames, and parameterized queries for security.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Introduction to SQL',
+              'Database connection libraries',
+              'Executing SELECT queries',
+              'Reading SQL results into pandas',
+              'Writing data back to databases'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: 'APIs & Web Data',
+    description: 'Fetch data from web APIs, parse JSON responses, and integrate external data sources',
+    icon: 'globe',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'api-intro',
+        title: 'Working with APIs',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: APIs & Web Data',
+            id: 'api-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: HTTP basics, the requests library, making GET/POST requests, parsing JSON, API authentication, and handling rate limits.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Understanding REST APIs',
+              'Making HTTP requests with requests',
+              'Parsing JSON responses',
+              'API authentication (API keys, OAuth)',
+              'Error handling for web requests'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: 'Automating Reports & Scripts',
+    description: 'Create automated reports, schedule scripts, and build reusable data pipelines',
+    icon: 'zap',
+    estimatedTime: 90,
+    sections: [
+      {
+        id: 'automation-intro',
+        title: 'Report Automation',
+        estimatedTime: 20,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Automation',
+            id: 'automation-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'This chapter will cover: Creating command-line scripts, scheduling with cron/Task Scheduler, email reports, Excel automation, and building reusable modules.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Command-line scripts with argparse',
+              'Scheduling automated tasks',
+              'Sending email reports',
+              'Generating Excel files with openpyxl',
+              'Logging and monitoring scripts'
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: 'Capstone Project: BI Dashboard',
+    description: 'Build a complete Business Intelligence dashboard combining all skills learned',
+    icon: 'award',
+    estimatedTime: 180,
+    sections: [
+      {
+        id: 'capstone-intro',
+        title: 'Project Overview',
+        estimatedTime: 30,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Coming Soon: Capstone Project',
+            id: 'capstone-intro'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Chapter Under Development',
+            content: 'The final project will guide you through building a complete BI dashboard that fetches data, cleans it, performs analysis, creates visualizations, and generates automated reports.'
+          },
+          {
+            type: 'list',
+            ordered: false,
+            items: [
+              'Project planning and requirements',
+              'Data ingestion pipeline',
+              'Data cleaning and transformation',
+              'Analysis and aggregations',
+              'Interactive visualizations',
+              'Automated report generation'
+            ]
           }
         ]
       }
