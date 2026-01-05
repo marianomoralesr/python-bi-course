@@ -333,7 +333,7 @@ export const chapters: Chapter[] = [
       {
         id: 'data-types',
         title: 'Data Types',
-        estimatedTime: 15,
+        estimatedTime: 30,
         content: [
           {
             type: 'heading',
@@ -343,84 +343,313 @@ export const chapters: Chapter[] = [
           },
           {
             type: 'paragraph',
-            text: 'Python has several built-in data types. Understanding them is crucial for Business Intelligence work where you\'ll handle various kinds of data.'
+            text: 'Every piece of data in Python has a type. Understanding data types is fundamental to Business Intelligence because you\'ll work with numbers, text, dates, and more. Let\'s explore each type step by step.'
+          },
+          {
+            type: 'callout',
+            variant: 'info',
+            title: 'Why Data Types Matter',
+            content: 'Different operations work on different types. You can add numbers (5 + 3 = 8), but adding text works differently ("Hello" + "World" = "HelloWorld"). Knowing your data type helps you avoid errors.'
           },
           {
             type: 'heading',
             level: 2,
-            text: 'Numeric Types',
-            id: 'numeric'
+            text: 'Step 1: Integers (int) - Whole Numbers',
+            id: 'integers'
+          },
+          {
+            type: 'paragraph',
+            text: 'Integers are whole numbers without decimals. In BI, you\'ll use them for counts, IDs, quantities, and years.'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Integers (whole numbers)\nproduct_count = 150\nquarter = 4\n\n# Floats (decimal numbers)\nprice = 29.99\ngrowth_rate = 0.15  # 15%\npi = 3.14159\n\n# Check the type\nprint(type(product_count))  # <class \'int\'>\nprint(type(price))          # <class \'float\'>',
+            code: '# Creating integer variables\nproduct_count = 150      # Number of products\nemployee_id = 10042      # Employee ID\nyear = 2024              # Current year\nquarter = 4              # Q4\nnegative_balance = -500  # Negative numbers work too!\n\n# Display the values\nprint("Products:", product_count)\nprint("Employee ID:", employee_id)\nprint("Year:", year)',
+            executable: true
+          },
+          {
+            type: 'paragraph',
+            text: 'You can verify the type using the type() function:'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Check the type of a variable\ncount = 42\nprint(type(count))  # <class \'int\'>\n\n# Integer math always gives integers (except division)\nprint(10 + 5)   # 15 (integer)\nprint(10 * 5)   # 50 (integer)\nprint(10 // 3)  # 3 (integer - floor division)',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Quick Practice',
+            content: 'Try changing the values in the code above and run it again. What happens when you multiply two integers? What about subtracting?'
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: Create Integer Variables',
+            id: 'int-exercise'
+          },
+          {
+            type: 'paragraph',
+            text: 'Complete the code by filling in the blanks with appropriate integer values:'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Fill in the blanks with integer values\ntotal_orders = 250       # Number of orders this month\ndays_in_month = 30       # Days in the month\n\n# Calculate orders per day\norders_per_day = total_orders // days_in_month\nprint(f"Average orders per day: {orders_per_day}")',
             executable: true
           },
           {
             type: 'heading',
             level: 2,
-            text: 'Strings (Text)',
-            id: 'strings'
+            text: 'Step 2: Floats (float) - Decimal Numbers',
+            id: 'floats'
+          },
+          {
+            type: 'paragraph',
+            text: 'Floats are numbers with decimal points. Essential for prices, percentages, rates, and precise calculations.'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Strings - text data\ncustomer_name = "John Smith"\nproduct = \'Widget Pro\'\n\n# String operations\nfull_name = "John" + " " + "Smith"  # Concatenation\nprint(full_name)\nprint(len(customer_name))  # 10 (length of string)',
+            code: '# Creating float variables\nprice = 29.99            # Product price\ntax_rate = 0.08          # 8% tax rate\ngrowth_rate = 0.15       # 15% growth\npi = 3.14159             # Mathematical constant\ntemperature = -3.5       # Negative float\n\nprint("Price:", price)\nprint("Tax Rate:", tax_rate)\nprint("Growth:", growth_rate)',
+            executable: true
+          },
+          {
+            type: 'paragraph',
+            text: 'Division always produces a float, even with integers:'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Division always gives a float\nresult = 10 / 4\nprint(result)       # 2.5\nprint(type(result)) # <class \'float\'>\n\n# Even when it divides evenly!\nresult2 = 10 / 2\nprint(result2)      # 2.0 (still a float!)',
             executable: true
           },
           {
             type: 'heading',
             level: 3,
-            text: 'f-strings (Formatted Strings)',
-            id: 'f-strings'
-          },
-          {
-            type: 'paragraph',
-            text: 'f-strings let you embed variables directly in text. Put an f before the quotes and use {variable} to insert values.'
+            text: 'Practical Example: Calculating Total Price',
+            id: 'float-example'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# f-strings - the modern way to format strings\nname = "Alice"\nsales = 50000\nrate = 0.15\n\n# Basic f-string\nprint(f"Hello, {name}!")\nprint(f"Total sales: {sales}")\n\n# Calculations inside f-strings\nbonus = sales * rate\nprint(f"Bonus: {bonus}")\n\n# You can even do math inside the braces\nprint(f"Tax (10%): {sales * 0.10}")',
+            code: '# Real-world BI calculation\nbase_price = 49.99\nquantity = 3\ntax_rate = 0.08  # 8% tax\n\n# Step 1: Calculate subtotal\nsubtotal = base_price * quantity\nprint(f"Subtotal: ${subtotal}")\n\n# Step 2: Calculate tax\ntax_amount = subtotal * tax_rate\nprint(f"Tax (8%): ${tax_amount}")\n\n# Step 3: Calculate total\ntotal = subtotal + tax_amount\nprint(f"Total: ${total}")',
             executable: true
           },
           {
             type: 'heading',
             level: 3,
-            text: 'String Methods',
-            id: 'string-methods'
-          },
-          {
-            type: 'paragraph',
-            text: 'Strings have built-in methods for common operations. These are essential for cleaning and formatting data.'
+            text: 'Mini-Exercise: Calculate Discount',
+            id: 'float-exercise'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Case conversion methods\nname = "john smith"\nprint(name.upper())  # JOHN SMITH (all uppercase)\nprint(name.lower())  # john smith (all lowercase)\nprint(name.title())  # John Smith (capitalize each word)\n\n# Cleaning whitespace\nmessy = "   hello world   "\nprint(messy.strip())   # "hello world" (removes spaces from both ends)\nprint(messy.lstrip())  # "hello world   " (left strip only)\nprint(messy.rstrip())  # "   hello world" (right strip only)\n\n# Combine methods\nmessy_name = "   JOHN DOE   "\nclean_name = messy_name.strip().title()\nprint(clean_name)  # John Doe',
+            code: '# Calculate the discounted price\noriginal_price = 100.00\ndiscount_rate = 0.25  # 25% discount\n\n# Calculate the discount amount\ndiscount_amount = original_price * discount_rate\nprint(f"Discount: ${discount_amount}")\n\n# Calculate final price\nfinal_price = original_price - discount_amount\nprint(f"Final price: ${final_price}")',
             executable: true
           },
           {
+            type: 'heading',
+            level: 2,
+            text: 'Step 3: Strings (str) - Text Data',
+            id: 'strings-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'Strings hold text data. They\'re enclosed in quotes (single \' or double "). In BI, strings are used for names, categories, descriptions, and IDs.'
+          },
+          {
             type: 'code',
             language: 'python',
-            code: '# Finding and searching in strings\nemail = "user@company.com"\n\n# find() returns the position (index) of a substring\nat_position = email.find("@")\nprint(f"@ is at position: {at_position}")  # 4\n\n# Returns -1 if not found\nprint(email.find("xyz"))  # -1\n\n# Check if string contains something\nprint("@" in email)  # True\nprint("xyz" in email)  # False',
+            code: '# Creating strings - use single or double quotes\ncustomer_name = "John Smith"\nproduct_name = \'Widget Pro\'\ncategory = "Electronics"\nsku = "PROD-12345"\n\n# Empty string\nempty = ""\n\nprint("Customer:", customer_name)\nprint("Product:", product_name)\nprint("SKU:", sku)',
             executable: true
           },
           {
             type: 'heading',
             level: 3,
-            text: 'String Slicing',
-            id: 'string-slicing'
+            text: 'Understanding Indexes - Accessing Individual Characters',
+            id: 'indexes-intro'
           },
           {
             type: 'paragraph',
-            text: 'You can extract parts of a string using slicing. The syntax is string[start:end] where start is included and end is excluded.'
+            text: 'Every character in a string has a position called an INDEX. Indexes start at 0, not 1! Think of it like an apartment building where the ground floor is 0.'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# String slicing: string[start:end]\ntext = "Python"\n\nprint(text[0])      # P (first character, index 0)\nprint(text[0:3])    # Pyt (characters 0, 1, 2)\nprint(text[:3])     # Pyt (same - start defaults to 0)\nprint(text[3:])     # hon (from index 3 to end)\nprint(text[-1])     # n (last character)\nprint(text[-3:])    # hon (last 3 characters)\n\n# Practical example: extract area code from phone\nphone = "5551234567"\narea_code = phone[0:3]    # First 3 digits\nprefix = phone[3:6]       # Next 3 digits  \nline = phone[6:10]        # Last 4 digits\nprint(f"({area_code}) {prefix}-{line}")  # (555) 123-4567',
+            code: '# Indexes start at 0!\nword = "Python"\n\n# Index:  0  1  2  3  4  5\n# Char:   P  y  t  h  o  n\n\nprint(word[0])  # P - first character (index 0)\nprint(word[1])  # y - second character (index 1)\nprint(word[2])  # t - third character (index 2)\nprint(word[5])  # n - sixth character (index 5)',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'warning',
+            title: 'Important: Indexes Start at 0!',
+            content: 'The first character is at index 0, not 1. This is one of the most common mistakes beginners make. Remember: index = position - 1'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Negative indexes count from the end\nword = "Python"\n\n# Negative index:  -6  -5  -4  -3  -2  -1\n# Positive index:   0   1   2   3   4   5\n# Character:        P   y   t   h   o   n\n\nprint(word[-1])  # n - last character\nprint(word[-2])  # o - second to last\nprint(word[-6])  # P - first character (same as word[0])',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: String Indexing',
+            id: 'string-index-exercise'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Practice indexing\ncompany = "Microsoft"\n\n# Index:  0  1  2  3  4  5  6  7  8\n# Char:   M  i  c  r  o  s  o  f  t\n\n# Get the first letter\nfirst = company[0]\nprint(f"First letter: {first}")  # M\n\n# Get the last letter\nlast = company[-1]\nprint(f"Last letter: {last}")    # t\n\n# Get the 5th letter (index 4)\nfifth = company[4]\nprint(f"Fifth letter: {fifth}")  # o',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'String Slicing - Extracting Parts of Strings',
+            id: 'slicing-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'Slicing extracts a portion of a string. The syntax is string[start:end] where start is included and end is EXCLUDED.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Slicing syntax: string[start:end]\n# start = first index to include\n# end = first index to EXCLUDE\n\ntext = "Python"\n\n# Get characters from index 0 to 2 (3 is excluded)\nprint(text[0:3])  # "Pyt" (indexes 0, 1, 2)\n\n# Get characters from index 2 to 5\nprint(text[2:5])  # "tho" (indexes 2, 3, 4)\n\n# Shortcuts\nprint(text[:3])   # "Pyt" - from start to index 3\nprint(text[3:])   # "hon" - from index 3 to end\nprint(text[:])    # "Python" - entire string',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Practical slicing example: Parsing a date\ndate = "2024-01-15"  # YYYY-MM-DD format\n\n# Extract year (first 4 characters)\nyear = date[0:4]\nprint(f"Year: {year}")     # 2024\n\n# Extract month (characters 5-6, skip the dash)\nmonth = date[5:7]\nprint(f"Month: {month}")   # 01\n\n# Extract day (last 2 characters)\nday = date[8:10]\nprint(f"Day: {day}")       # 15\n\n# Or use negative indexing for day\nday_alt = date[-2:]\nprint(f"Day (alt): {day_alt}")  # 15',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: Extract SKU Parts',
+            id: 'slice-exercise'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Product SKU format: CAT-12345-XL\n# Category (3 chars) - ID (5 digits) - Size (2 chars)\nsku = "ELE-98765-MD"\n\n# Extract the category code (first 3 characters)\ncategory = sku[0:3]\nprint(f"Category: {category}")  # ELE\n\n# Extract the product ID (characters 4-8)\nproduct_id = sku[4:9]\nprint(f"Product ID: {product_id}")  # 98765\n\n# Extract the size (last 2 characters)\nsize = sku[-2:]\nprint(f"Size: {size}")  # MD',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'String Length and Concatenation',
+            id: 'string-ops'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Get the length of a string\nname = "Business Intelligence"\nlength = len(name)\nprint(f"\'{name}\' has {length} characters")  # 21 characters\n\n# Concatenation - joining strings with +\nfirst_name = "John"\nlast_name = "Smith"\nfull_name = first_name + " " + last_name\nprint(f"Full name: {full_name}")  # John Smith\n\n# Repeat strings with *\nline = "-" * 20\nprint(line)  # --------------------',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Step 4: f-strings - Formatting Text with Variables',
+            id: 'f-strings-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'f-strings are the modern way to create formatted text in Python. They let you embed variables and expressions directly into strings.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# f-string basics: add f before the quotes\n# Use {variable} to insert values\n\nname = "Alice"\nage = 28\n\n# Without f-string (old way)\nprint("Name: " + name + ", Age: " + str(age))  # Awkward!\n\n# With f-string (modern way)\nprint(f"Name: {name}, Age: {age}")  # Clean and easy!',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# f-strings with calculations\nprice = 49.99\nquantity = 3\n\n# You can do math inside the braces!\nprint(f"Subtotal: ${price * quantity}")\n\n# Variables and calculations together\ntax_rate = 0.08\nsubtotal = price * quantity\ntax = subtotal * tax_rate\nprint(f"Items: {quantity}")\nprint(f"Subtotal: ${subtotal}")\nprint(f"Tax ({tax_rate * 100}%): ${tax}")\nprint(f"Total: ${subtotal + tax}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'f-string Number Formatting',
+            id: 'f-string-formatting'
+          },
+          {
+            type: 'paragraph',
+            text: 'f-strings can format numbers beautifully using format specifiers after a colon.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Number formatting in f-strings\nsales = 1234567.891\n\n# Basic - no formatting\nprint(f"Sales: {sales}")  # 1234567.891\n\n# With comma separators for thousands\nprint(f"Sales: {sales:,}")  # 1,234,567.891\n\n# Limit decimal places\nprint(f"Sales: {sales:.2f}")  # 1234567.89 (2 decimals)\n\n# Combine comma and decimals\nprint(f"Sales: ${sales:,.2f}")  # $1,234,567.89\n\n# Percentage formatting\nrate = 0.156\nprint(f"Growth: {rate:.1%}")  # 15.6%',
+            executable: true
+          },
+          {
+            type: 'table',
+            headers: ['Format', 'Example', 'Result', 'Use Case'],
+            rows: [
+              [':,', 'f\"{1234567:,}\"', '1,234,567', 'Large numbers'],
+              [':.2f', 'f\"{3.14159:.2f}\"', '3.14', '2 decimal places'],
+              [':,.2f', 'f\"${1234.5:,.2f}\"', '$1,234.50', 'Currency'],
+              [':.1%', 'f\"{0.156:.1%}\"', '15.6%', 'Percentages'],
+              [':>10', 'f\"{42:>10}\"', '        42', 'Right align']
+            ]
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: Format a Sales Report',
+            id: 'f-string-exercise'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Create a formatted sales report\nproduct = "Widget Pro"\nunits_sold = 1250\nunit_price = 29.99\n\n# Calculate total\ntotal_revenue = units_sold * unit_price\n\n# Print formatted report\nprint("=" * 30)\nprint(f"Product: {product}")\nprint(f"Units Sold: {units_sold:,}")\nprint(f"Unit Price: ${unit_price:.2f}")\nprint(f"Total Revenue: ${total_revenue:,.2f}")\nprint("=" * 30)',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Step 5: String Methods for Data Cleaning',
+            id: 'string-methods-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'Real data is often messy. String methods help you clean and standardize text data.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Case conversion methods\nname = "jOHN sMITH"  # Messy case\n\nprint(name.upper())  # JOHN SMITH - all uppercase\nprint(name.lower())  # john smith - all lowercase  \nprint(name.title())  # John Smith - title case (proper names)\nprint(name.capitalize())  # John smith - only first letter',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Cleaning whitespace - very common in data!\nmessy_data = "   Product Name   "\n\n# strip() removes spaces from both ends\nclean = messy_data.strip()\nprint(f"\'{clean}\'")  # \'Product Name\'\n\n# lstrip() - left strip only\n# rstrip() - right strip only\nprint(f"\'{messy_data.lstrip()}\'")  # \'Product Name   \'\nprint(f"\'{messy_data.rstrip()}\'")  # \'   Product Name\'\n\n# Chain methods together!\nmessy_name = "   ALICE JOHNSON   "\nclean_name = messy_name.strip().title()\nprint(clean_name)  # Alice Johnson',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Replace text\nphone = "555-123-4567"\nclean_phone = phone.replace("-", "")\nprint(clean_phone)  # 5551234567\n\n# Split strings into lists\nnames = "Alice,Bob,Charlie"\nname_list = names.split(",")\nprint(name_list)  # [\'Alice\', \'Bob\', \'Charlie\']\n\n# Join list back into string\nnames_with_space = " | ".join(name_list)\nprint(names_with_space)  # Alice | Bob | Charlie',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: Clean Customer Data',
+            id: 'clean-data-exercise'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Clean this messy customer data\nraw_name = "   JOHN DOE   "\nraw_email = "  John.Doe@EMAIL.COM  "\nraw_phone = "555-999-1234"\n\n# Clean the name: remove spaces, proper case\nclean_name = raw_name.strip().title()\nprint(f"Name: {clean_name}")\n\n# Clean the email: remove spaces, lowercase\nclean_email = raw_email.strip().lower()\nprint(f"Email: {clean_email}")\n\n# Clean the phone: remove dashes\nclean_phone = raw_phone.replace("-", "")\nprint(f"Phone: {clean_phone}")',
             executable: true
           },
           {
@@ -431,36 +660,108 @@ export const chapters: Chapter[] = [
           {
             type: 'heading',
             level: 2,
-            text: 'Booleans (True/False)',
-            id: 'booleans'
+            text: 'Step 6: Booleans (bool) - True or False',
+            id: 'booleans-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'Booleans have only two values: True or False. They\'re essential for making decisions and filtering data.'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Booleans - True or False\nis_active = True\nhas_discount = False\n\n# Comparison results are booleans\nsales = 50000\ntarget = 45000\n\nmet_target = sales >= target\nprint("Met target:", met_target)  # True\n\n# Useful in BI for filtering data\nis_high_value = sales > 100000\nprint("High value:", is_high_value)  # False',
+            code: '# Creating booleans directly\nis_active = True\nhas_discount = False\nis_member = True\n\nprint(is_active)  # True\nprint(type(is_active))  # <class \'bool\'>',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Booleans from comparisons\nsales = 85000\ntarget = 70000\n\n# These comparisons produce True or False\nmet_target = sales >= target\nprint(f"Met target: {met_target}")  # True\n\nexceeded_by_50 = sales > (target * 1.5)\nprint(f"Exceeded by 50%: {exceeded_by_50}")  # False\n\nexact_match = sales == 85000\nprint(f"Exact match: {exact_match}")  # True',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Using Booleans for Business Logic',
+            id: 'bool-business'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Real-world BI example: Customer segmentation\npurchase_amount = 250\nis_new_customer = False\nhas_loyalty_card = True\n\n# Determine if customer qualifies for promotion\nqualifies = purchase_amount >= 100 and has_loyalty_card\nprint(f"Qualifies for promotion: {qualifies}")  # True\n\n# Check if high-value customer\nis_high_value = purchase_amount >= 500 or (has_loyalty_card and purchase_amount >= 200)\nprint(f"High-value customer: {is_high_value}")  # True',
             executable: true
           },
           {
             type: 'heading',
             level: 2,
-            text: 'Type Conversion',
-            id: 'type-conversion'
+            text: 'Step 7: Type Conversion',
+            id: 'type-conversion-detail'
+          },
+          {
+            type: 'paragraph',
+            text: 'Sometimes you need to convert between types. Python provides functions for this.'
           },
           {
             type: 'code',
             language: 'python',
-            code: '# Converting between types\nquantity_str = "150"\nquantity_int = int(quantity_str)  # String to integer\n\nprice_str = "29.99"\nprice_float = float(price_str)    # String to float\n\ncount = 42\ncount_str = str(count)            # Integer to string\n\nprint("Quantity:", quantity_int, "Type:", type(quantity_int))\nprint("Price:", price_float, "Type:", type(price_float))',
+            code: '# Converting between types\n\n# String to Integer\nquantity_text = "150"\nquantity = int(quantity_text)\nprint(f"Quantity: {quantity}, Type: {type(quantity)}")  # 150, int\n\n# String to Float\nprice_text = "29.99"\nprice = float(price_text)\nprint(f"Price: {price}, Type: {type(price)}")  # 29.99, float\n\n# Number to String\ncount = 42\ncount_text = str(count)\nprint(f"Count: {count_text}, Type: {type(count_text)}")  # "42", str',
             executable: true
           },
           {
+            type: 'code',
+            language: 'python',
+            code: '# Why conversion matters - common data processing scenario\n# Data from files often comes as strings!\n\n# Raw data (all strings)\nrow = ["Widget Pro", "29.99", "150", "True"]\n\nproduct = row[0]           # Already a string, keep it\nprice = float(row[1])      # Convert to float for math\nquantity = int(row[2])     # Convert to int for counting\nin_stock = row[3] == "True"  # Compare to get boolean\n\n# Now we can calculate!\ntotal = price * quantity\nprint(f"Product: {product}")\nprint(f"Total: ${total:,.2f}")\nprint(f"In Stock: {in_stock}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'Mini-Exercise: Process Sales Data',
+            id: 'conversion-exercise'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Process this sales data (all values are strings!)\nproduct_name = "Laptop Pro"\nprice_str = "999.99"\nquantity_str = "5"\n\n# Convert to proper types\nprice = float(price_str)\nquantity = int(quantity_str)\n\n# Calculate revenue\nrevenue = price * quantity\n\n# Print formatted result\nprint(f"Product: {product_name}")\nprint(f"Units: {quantity:,}")\nprint(f"Unit Price: ${price:,.2f}")\nprint(f"Total Revenue: ${revenue:,.2f}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Data Types Summary',
+            id: 'types-summary'
+          },
+          {
             type: 'table',
-            headers: ['Data Type', 'Description', 'Example', 'BI Use Case'],
+            headers: ['Type', 'Description', 'Example', 'Create From String'],
             rows: [
-              ['int', 'Whole numbers', '150', 'Counts, IDs'],
-              ['float', 'Decimal numbers', '29.99', 'Prices, percentages'],
-              ['str', 'Text', '"Product A"', 'Names, categories'],
-              ['bool', 'True/False', 'True', 'Flags, filters']
+              ['int', 'Whole numbers', '42', 'int(\"42\")'],
+              ['float', 'Decimal numbers', '3.14', 'float(\"3.14\")'],
+              ['str', 'Text', '\"Hello\"', 'Already a string'],
+              ['bool', 'True/False', 'True', 'value == \"True\"']
             ]
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Practice Makes Perfect!',
+            content: 'The best way to learn data types is to experiment. Try creating variables of different types, converting between them, and using f-strings to display results. Make mistakes - that\'s how you learn!'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Practice Challenge: Complete the Code',
+            id: 'practice-challenge'
+          },
+          {
+            type: 'paragraph',
+            text: 'Now write complete code from scratch! Create a mini-report using everything you learned.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# CHALLENGE: Create a product summary report\n# 1. Create variables for: product name, price, quantity, discount rate\n# 2. Calculate: subtotal, discount amount, final price\n# 3. Print a formatted report using f-strings\n\n# Your variables\nproduct = "Wireless Headphones"\nprice = 79.99\nquantity = 2\ndiscount_rate = 0.15  # 15% discount\n\n# Your calculations\nsubtotal = price * quantity\ndiscount = subtotal * discount_rate\nfinal_price = subtotal - discount\n\n# Your report\nprint("=" * 35)\nprint("PURCHASE SUMMARY".center(35))\nprint("=" * 35)\nprint(f"Product: {product}")\nprint(f"Unit Price: ${price:,.2f}")\nprint(f"Quantity: {quantity}")\nprint(f"Subtotal: ${subtotal:,.2f}")\nprint(f"Discount ({discount_rate:.0%}): -${discount:,.2f}")\nprint("-" * 35)\nprint(f"TOTAL: ${final_price:,.2f}")\nprint("=" * 35)',
+            executable: true
           },
           {
             type: 'exercise-link',
