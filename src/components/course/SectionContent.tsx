@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
-import { Info, AlertTriangle, Lightbulb, AlertCircle, FileQuestion, Code2, BookOpen, Layers } from 'lucide-react';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Info, AlertTriangle, Lightbulb, AlertCircle, FileQuestion, Code2, BookOpen, Layers, CheckCircle, XCircle, ChevronLeft, ChevronRight, Award } from 'lucide-react';
 import type { ContentBlock, Section } from '../../types';
 import { CodeBlock } from './CodeBlock';
 import { StepwiseContent } from './StepwiseContent';
 import { useSettingsStore } from '../../stores/settingsStore';
+import { useProgressStore } from '../../stores/progressStore';
 import clsx from 'clsx';
 
 interface SectionContentProps {
@@ -170,6 +172,33 @@ function ContentBlockRenderer({ block, chapterId, index }: ContentBlockRendererP
             title={block.title}
             description="Practice what you've learned"
             to={`/exercise/${block.exerciseId}`}
+          />
+        </div>
+      );
+
+    case 'mini-quiz':
+      return (
+        <div className="my-6 animate-fadeIn" style={{ animationDelay }}>
+          <MiniQuizBlock
+            id={block.id}
+            question={block.question}
+            options={block.options}
+            correctAnswer={block.correctAnswer}
+            explanation={block.explanation}
+          />
+        </div>
+      );
+
+    case 'section-nav':
+      return (
+        <div className="my-8 animate-fadeIn" style={{ animationDelay }}>
+          <SectionNavBlock
+            chapterId={chapterId}
+            showComplete={block.showComplete}
+            showNext={block.showNext}
+            showBack={block.showBack}
+            nextSection={block.nextSection}
+            prevSection={block.prevSection}
           />
         </div>
       );
@@ -391,5 +420,257 @@ function ActionCard({ type, title, description, to }: ActionCardProps) {
         </div>
       </div>
     </Link>
+  );
+}
+
+// Mini Quiz component for inline knowledge checks
+interface MiniQuizBlockProps {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+}
+
+function MiniQuizBlock({ id: _id, question, options, correctAnswer, explanation }: MiniQuizBlockProps) {
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
+  const handleSelect = (index: number) => {
+    if (showResult) return;
+    setSelectedAnswer(index);
+  };
+
+  const handleCheck = () => {
+    if (selectedAnswer === null) return;
+    setShowResult(true);
+  };
+
+  const handleReset = () => {
+    setSelectedAnswer(null);
+    setShowResult(false);
+  };
+
+  const isCorrect = selectedAnswer === correctAnswer;
+
+  return (
+    <div className="bg-surface rounded-2xl border border-border overflow-hidden">
+      {/* Header */}
+      <div className="px-4 py-3 bg-primary/10 border-b border-border flex items-center gap-2">
+        <FileQuestion className="w-5 h-5 text-primary" />
+        <span className="font-semibold text-primary text-sm">Verificación Rápida</span>
+      </div>
+
+      {/* Question */}
+      <div className="p-4">
+        <p className="text-text font-medium mb-4">{question}</p>
+
+        {/* Options */}
+        <div className="space-y-2 mb-4">
+          {options.map((option, index) => (
+            <button
+              key={index}
+              onClick={() => handleSelect(index)}
+              disabled={showResult}
+              className={clsx(
+                'w-full text-left px-4 py-3 rounded-xl border-2 transition-all duration-200',
+                !showResult && selectedAnswer === index
+                  ? 'border-primary bg-primary/10 text-text'
+                  : !showResult && selectedAnswer !== index
+                  ? 'border-border hover:border-primary/50 text-text-secondary hover:text-text'
+                  : showResult && index === correctAnswer
+                  ? 'border-success bg-success/10 text-success'
+                  : showResult && selectedAnswer === index && index !== correctAnswer
+                  ? 'border-error bg-error/10 text-error'
+                  : 'border-border/50 text-text-muted'
+              )}
+            >
+              <div className="flex items-center gap-3">
+                <span className={clsx(
+                  'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold',
+                  !showResult && selectedAnswer === index
+                    ? 'bg-primary text-white'
+                    : !showResult
+                    ? 'bg-surface text-text-secondary'
+                    : showResult && index === correctAnswer
+                    ? 'bg-success text-white'
+                    : showResult && selectedAnswer === index
+                    ? 'bg-error text-white'
+                    : 'bg-surface/50 text-text-muted'
+                )}>
+                  {showResult && index === correctAnswer ? (
+                    <CheckCircle className="w-4 h-4" />
+                  ) : showResult && selectedAnswer === index && index !== correctAnswer ? (
+                    <XCircle className="w-4 h-4" />
+                  ) : (
+                    String.fromCharCode(65 + index)
+                  )}
+                </span>
+                <span className="flex-1">{option}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Check button or result */}
+        {!showResult ? (
+          <button
+            onClick={handleCheck}
+            disabled={selectedAnswer === null}
+            className={clsx(
+              'w-full py-3 rounded-xl font-medium transition-all duration-200',
+              selectedAnswer !== null
+                ? 'bg-primary text-white hover:bg-primary/90'
+                : 'bg-surface text-text-muted cursor-not-allowed'
+            )}
+          >
+            Verificar Respuesta
+          </button>
+        ) : (
+          <div className="space-y-3">
+            {/* Result message */}
+            <div className={clsx(
+              'flex items-center gap-2 px-4 py-3 rounded-xl',
+              isCorrect ? 'bg-success/10 text-success' : 'bg-error/10 text-error'
+            )}>
+              {isCorrect ? (
+                <>
+                  <CheckCircle className="w-5 h-5" />
+                  <span className="font-medium">¡Correcto!</span>
+                </>
+              ) : (
+                <>
+                  <XCircle className="w-5 h-5" />
+                  <span className="font-medium">Incorrecto</span>
+                </>
+              )}
+            </div>
+
+            {/* Explanation */}
+            <div className="bg-surface/50 rounded-xl p-4 border border-border/50">
+              <p className="text-sm text-text-secondary">
+                <span className="font-semibold text-text">Explicación:</span> {explanation}
+              </p>
+            </div>
+
+            {/* Try again button */}
+            <button
+              onClick={handleReset}
+              className="w-full py-2 rounded-xl border border-border text-text-secondary hover:text-text hover:border-primary/50 transition-all duration-200 text-sm"
+            >
+              Intentar de Nuevo
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// Section Navigation component
+interface SectionNavBlockProps {
+  chapterId: number;
+  showComplete?: boolean;
+  showNext?: boolean;
+  showBack?: boolean;
+  nextSection?: string;
+  prevSection?: string;
+}
+
+function SectionNavBlock({ chapterId, showComplete = true, showNext = true, showBack = true, nextSection, prevSection }: SectionNavBlockProps) {
+  const navigate = useNavigate();
+  const { markSectionComplete } = useProgressStore();
+  const [isMarkedComplete, setIsMarkedComplete] = useState(false);
+
+  const handleMarkComplete = () => {
+    // Mark current section complete
+    setIsMarkedComplete(true);
+  };
+
+  const handleNext = () => {
+    if (nextSection) {
+      navigate(`/chapter/${chapterId}/section/${nextSection}`);
+    }
+  };
+
+  const handleBack = () => {
+    if (prevSection) {
+      navigate(`/chapter/${chapterId}/section/${prevSection}`);
+    } else {
+      navigate(`/chapter/${chapterId}`);
+    }
+  };
+
+  const handleBackToChapter = () => {
+    navigate(`/chapter/${chapterId}`);
+  };
+
+  return (
+    <div className="border-t border-border pt-8 mt-8">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Back button */}
+        <div className="flex items-center gap-3">
+          {showBack && (
+            <button
+              onClick={handleBack}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border text-text-secondary hover:text-text hover:border-primary/50 transition-all duration-200"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              {prevSection ? 'Anterior' : 'Volver al Capítulo'}
+            </button>
+          )}
+        </div>
+
+        {/* Center - Mark Complete */}
+        <div className="flex items-center gap-3">
+          {showComplete && (
+            <button
+              onClick={handleMarkComplete}
+              disabled={isMarkedComplete}
+              className={clsx(
+                'flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all duration-200',
+                isMarkedComplete
+                  ? 'bg-success/20 text-success cursor-default'
+                  : 'bg-success text-white hover:bg-success/90 shadow-lg shadow-success/20'
+              )}
+            >
+              {isMarkedComplete ? (
+                <>
+                  <CheckCircle className="w-5 h-5" />
+                  <span>Completado</span>
+                </>
+              ) : (
+                <>
+                  <Award className="w-5 h-5" />
+                  <span>Marcar Completo</span>
+                </>
+              )}
+            </button>
+          )}
+        </div>
+
+        {/* Next button */}
+        <div className="flex items-center gap-3">
+          {showNext && nextSection && (
+            <button
+              onClick={handleNext}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/20"
+            >
+              Siguiente
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+          {!nextSection && showNext && (
+            <button
+              onClick={handleBackToChapter}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/20"
+            >
+              Finalizar Sección
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

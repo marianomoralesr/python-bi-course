@@ -261,6 +261,13 @@ export const chapters: Chapter[] = [
             type: 'quiz-link',
             quizId: 'chapter-0-quiz',
             title: 'Chapter 0 Quiz'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: false,
+            showBack: true,
+            prevSection: 'setup'
           }
         ]
       }
@@ -327,6 +334,13 @@ export const chapters: Chapter[] = [
             type: 'exercise-link',
             exerciseId: 'chapter-1-variables-exercise',
             title: 'Practice: Business Variables'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            nextSection: 'data-types'
           }
         ]
       },
@@ -382,6 +396,14 @@ export const chapters: Chapter[] = [
             variant: 'tip',
             title: 'Quick Practice',
             content: 'Try changing the values in the code above and run it again. What happens when you multiply two integers? What about subtracting?'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-integers-1',
+            question: '¿Cuál es el resultado de 10 // 3 en Python?',
+            options: ['3.33', '3', '4', '3.0'],
+            correctAnswer: 1,
+            explanation: 'El operador // realiza división entera (floor division), que devuelve solo la parte entera del resultado. 10 ÷ 3 = 3.33, pero // devuelve 3.'
           },
           {
             type: 'heading',
@@ -450,6 +472,14 @@ export const chapters: Chapter[] = [
             executable: true
           },
           {
+            type: 'mini-quiz',
+            id: 'quiz-floats-1',
+            question: '¿Qué tipo de dato devuelve la operación 10 / 2 en Python?',
+            options: ['int (5)', 'float (5.0)', 'str ("5")', 'Error'],
+            correctAnswer: 1,
+            explanation: 'La división con / siempre devuelve un float en Python, incluso cuando el resultado es un número entero. Por eso 10 / 2 = 5.0 (float), no 5 (int).'
+          },
+          {
             type: 'heading',
             level: 2,
             text: 'Step 3: Strings (str) - Text Data',
@@ -506,6 +536,14 @@ export const chapters: Chapter[] = [
             executable: true
           },
           {
+            type: 'mini-quiz',
+            id: 'quiz-strings-index',
+            question: 'Si palabra = "Python", ¿cuál es el valor de palabra[2]?',
+            options: ['P', 'y', 't', 'h'],
+            correctAnswer: 2,
+            explanation: 'Los índices empiezan en 0: P=0, y=1, t=2, h=3, o=4, n=5. Por lo tanto, palabra[2] devuelve "t".'
+          },
+          {
             type: 'heading',
             level: 3,
             text: 'String Slicing - Extracting Parts of Strings',
@@ -538,6 +576,14 @@ export const chapters: Chapter[] = [
             language: 'python',
             code: '# Product SKU format: CAT-12345-XL\n# Category (3 chars) - ID (5 digits) - Size (2 chars)\nsku = "ELE-98765-MD"\n\n# Extract the category code (first 3 characters)\ncategory = sku[0:3]\nprint(f"Category: {category}")  # ELE\n\n# Extract the product ID (characters 4-8)\nproduct_id = sku[4:9]\nprint(f"Product ID: {product_id}")  # 98765\n\n# Extract the size (last 2 characters)\nsize = sku[-2:]\nprint(f"Size: {size}")  # MD',
             executable: true
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-strings-slice',
+            question: 'Si texto = "Python", ¿qué devuelve texto[1:4]?',
+            options: ['Pyt', 'yth', 'ytho', 'hon'],
+            correctAnswer: 1,
+            explanation: 'El slicing texto[1:4] incluye desde el índice 1 hasta el 3 (el 4 se excluye). P=0, y=1, t=2, h=3. Resultado: "yth".'
           },
           {
             type: 'heading',
@@ -599,6 +645,14 @@ export const chapters: Chapter[] = [
               [':.1%', 'f\"{0.156:.1%}\"', '15.6%', 'Percentages'],
               [':>10', 'f\"{42:>10}\"', '        42', 'Right align']
             ]
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-fstrings-1',
+            question: 'Si tasa = 0.25, ¿qué muestra f"{tasa:.0%}"?',
+            options: ['0.25', '25%', '25.0%', '0.25%'],
+            correctAnswer: 1,
+            explanation: 'El formato :.0% convierte un decimal a porcentaje (multiplica por 100) y añade el símbolo %. El .0 indica 0 decimales, así que 0.25 se muestra como "25%".'
           },
           {
             type: 'heading',
@@ -692,6 +746,14 @@ export const chapters: Chapter[] = [
             executable: true
           },
           {
+            type: 'mini-quiz',
+            id: 'quiz-booleans-1',
+            question: '¿Cuál es el resultado de True and False?',
+            options: ['True', 'False', 'Error', 'None'],
+            correctAnswer: 1,
+            explanation: 'El operador "and" devuelve True solo si AMBAS condiciones son True. Como una de ellas es False, el resultado es False.'
+          },
+          {
             type: 'heading',
             level: 2,
             text: 'Step 7: Type Conversion',
@@ -767,6 +829,14 @@ export const chapters: Chapter[] = [
             type: 'exercise-link',
             exerciseId: 'chapter-1-datatypes-exercise',
             title: 'Practice: Type Conversion'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'variables',
+            nextSection: 'operators'
           }
         ]
       },
@@ -842,6 +912,22 @@ export const chapters: Chapter[] = [
             type: 'exercise-link',
             exerciseId: 'chapter-1-operators-exercise',
             title: 'Practice: Financial Calculator'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-operators-1',
+            question: '¿Cuál es el resultado de 17 % 5?',
+            options: ['3', '2', '3.4', '12'],
+            correctAnswer: 1,
+            explanation: 'El operador % (módulo) devuelve el residuo de la división. 17 ÷ 5 = 3 con residuo 2. Por lo tanto, 17 % 5 = 2.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'data-types',
+            nextSection: 'conditionals'
           }
         ]
       },
@@ -920,9 +1006,24 @@ export const chapters: Chapter[] = [
             title: 'Practice: Sales Performance Calculator'
           },
           {
+            type: 'mini-quiz',
+            id: 'quiz-conditionals-1',
+            question: '¿Qué imprime este código?\n\nx = 5\nif x > 10:\n    print("A")\nelif x > 3:\n    print("B")\nelse:\n    print("C")',
+            options: ['A', 'B', 'C', 'Error'],
+            correctAnswer: 1,
+            explanation: 'x = 5 no es mayor que 10, así que se salta el primer if. Pero x > 3 es True (5 > 3), así que se ejecuta el elif y se imprime "B".'
+          },
+          {
             type: 'quiz-link',
             quizId: 'chapter-1-quiz',
             title: 'Chapter 1 Quiz'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: false,
+            showBack: true,
+            prevSection: 'operators'
           }
         ]
       }
@@ -1005,9 +1106,24 @@ export const chapters: Chapter[] = [
             content: 'Lists are perfect for storing time series data, product names, or any sequential data. For larger datasets, you\'ll eventually use Pandas DataFrames, but lists are the foundation.'
           },
           {
+            type: 'mini-quiz',
+            id: 'quiz-lists-1',
+            question: 'Si lista = [10, 20, 30, 40], ¿qué devuelve lista[-2]?',
+            options: ['20', '30', '40', 'Error'],
+            correctAnswer: 1,
+            explanation: 'Los índices negativos cuentan desde el final: -1 es el último (40), -2 es el penúltimo (30).'
+          },
+          {
             type: 'exercise-link',
             exerciseId: 'chapter-2-lists-exercise',
             title: 'Practice: Sales List Operations'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            nextSection: 'dictionaries'
           }
         ]
       },
@@ -1078,6 +1194,22 @@ export const chapters: Chapter[] = [
             type: 'exercise-link',
             exerciseId: 'chapter-2-dict-exercise',
             title: 'Practice: Product Catalog'
+          },
+          {
+            type: 'mini-quiz',
+            id: 'quiz-dicts-1',
+            question: '¿Cómo accedes al valor "precio" en este diccionario?\n\nproducto = {"nombre": "Widget", "precio": 29.99}',
+            options: ['producto[0]', 'producto["precio"]', 'producto.precio', 'producto[precio]'],
+            correctAnswer: 1,
+            explanation: 'Los diccionarios usan llaves (keys) para acceder a valores. Se usa la sintaxis diccionario["llave"]. Las comillas son necesarias porque la llave es un string.'
+          },
+          {
+            type: 'section-nav',
+            showComplete: true,
+            showNext: true,
+            showBack: true,
+            prevSection: 'lists',
+            nextSection: 'tuples-sets'
           }
         ]
       },

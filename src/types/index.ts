@@ -59,7 +59,29 @@ export type ContentBlock =
   | ListBlock
   | CalloutBlock
   | QuizLinkBlock
-  | ExerciseLinkBlock;
+  | ExerciseLinkBlock
+  | MiniQuizBlock
+  | SectionNavBlock;
+
+// Inline mini-quiz for quick knowledge checks
+export interface MiniQuizBlock {
+  type: 'mini-quiz';
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number; // index of correct option
+  explanation: string;
+}
+
+// Navigation block for section navigation
+export interface SectionNavBlock {
+  type: 'section-nav';
+  showComplete?: boolean;
+  showNext?: boolean;
+  showBack?: boolean;
+  nextSection?: string;
+  prevSection?: string;
+}
 
 export interface HeadingBlock {
   type: 'heading';
