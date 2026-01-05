@@ -137,6 +137,22 @@ export const chapters: Chapter[] = [
             content: 'The print() function displays text on the screen. Text inside quotes is called a "string". The # symbol starts a comment, which Python ignores.'
           },
           {
+            type: 'heading',
+            level: 2,
+            text: 'Printing Numbers',
+            id: 'printing-numbers'
+          },
+          {
+            type: 'paragraph',
+            text: 'You can print numbers directly without quotes. Numbers are different from text - they can be used in calculations.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Printing numbers (no quotes needed)\nprint(2024)\nprint(42)\nprint(3.14)\n\n# Printing text (quotes required)\nprint("Hello")\nprint("My name is Alex")',
+            executable: true
+          },
+          {
             type: 'exercise-link',
             exerciseId: 'chapter-0-exercise-1',
             title: 'Practice: Hello Python'
@@ -173,6 +189,34 @@ export const chapters: Chapter[] = [
             language: 'python',
             code: '# This is a single-line comment\n\n"""\nThis is a multi-line comment\nor docstring. Great for\nlonger explanations.\n"""\n\nprint("Comments make code readable!")  # Inline comment',
             executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Advanced Print Options',
+            id: 'print-options'
+          },
+          {
+            type: 'paragraph',
+            text: 'The print() function has optional parameters that control how output is displayed:'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# The sep parameter changes what goes between items\nprint("A", "B", "C")           # Default: A B C (space)\nprint("A", "B", "C", sep="-")  # Custom: A-B-C (dash)\nprint("A", "B", "C", sep="")   # No separator: ABC\nprint("A", "B", "C", sep=", ") # Comma: A, B, C',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# The end parameter changes what goes at the end\nprint("Hello")        # Default: adds newline, next print on new line\nprint("World")\n\nprint("Hello", end=" ")  # Space instead of newline\nprint("World")           # Continues on same line!\n\nprint("Line 1", end="---")\nprint("Line 2")           # Shows: Line 1---Line 2',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'When to Use sep and end',
+            content: 'Use sep to format output like "A-B-C" or "1, 2, 3". Use end=" " when you want multiple prints on the same line.'
           },
           {
             type: 'heading',
@@ -322,8 +366,67 @@ export const chapters: Chapter[] = [
           {
             type: 'code',
             language: 'python',
-            code: '# Strings - text data\ncustomer_name = "John Smith"\nproduct = \'Widget Pro\'\n\n# String operations\nfull_name = "John" + " " + "Smith"  # Concatenation\nprint(full_name)\n\n# f-strings (formatted strings) - very useful!\nsales = 50000\nprint("Total sales:", sales)\n\n# String methods\nprint(customer_name.upper())  # JOHN SMITH\nprint(customer_name.lower())  # john smith\nprint(len(customer_name))     # 10 (length)',
+            code: '# Strings - text data\ncustomer_name = "John Smith"\nproduct = \'Widget Pro\'\n\n# String operations\nfull_name = "John" + " " + "Smith"  # Concatenation\nprint(full_name)\nprint(len(customer_name))  # 10 (length of string)',
             executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'f-strings (Formatted Strings)',
+            id: 'f-strings'
+          },
+          {
+            type: 'paragraph',
+            text: 'f-strings let you embed variables directly in text. Put an f before the quotes and use {variable} to insert values.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# f-strings - the modern way to format strings\nname = "Alice"\nsales = 50000\nrate = 0.15\n\n# Basic f-string\nprint(f"Hello, {name}!")\nprint(f"Total sales: {sales}")\n\n# Calculations inside f-strings\nbonus = sales * rate\nprint(f"Bonus: {bonus}")\n\n# You can even do math inside the braces\nprint(f"Tax (10%): {sales * 0.10}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'String Methods',
+            id: 'string-methods'
+          },
+          {
+            type: 'paragraph',
+            text: 'Strings have built-in methods for common operations. These are essential for cleaning and formatting data.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Case conversion methods\nname = "john smith"\nprint(name.upper())  # JOHN SMITH (all uppercase)\nprint(name.lower())  # john smith (all lowercase)\nprint(name.title())  # John Smith (capitalize each word)\n\n# Cleaning whitespace\nmessy = "   hello world   "\nprint(messy.strip())   # "hello world" (removes spaces from both ends)\nprint(messy.lstrip())  # "hello world   " (left strip only)\nprint(messy.rstrip())  # "   hello world" (right strip only)\n\n# Combine methods\nmessy_name = "   JOHN DOE   "\nclean_name = messy_name.strip().title()\nprint(clean_name)  # John Doe',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Finding and searching in strings\nemail = "user@company.com"\n\n# find() returns the position (index) of a substring\nat_position = email.find("@")\nprint(f"@ is at position: {at_position}")  # 4\n\n# Returns -1 if not found\nprint(email.find("xyz"))  # -1\n\n# Check if string contains something\nprint("@" in email)  # True\nprint("xyz" in email)  # False',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 3,
+            text: 'String Slicing',
+            id: 'string-slicing'
+          },
+          {
+            type: 'paragraph',
+            text: 'You can extract parts of a string using slicing. The syntax is string[start:end] where start is included and end is excluded.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# String slicing: string[start:end]\ntext = "Python"\n\nprint(text[0])      # P (first character, index 0)\nprint(text[0:3])    # Pyt (characters 0, 1, 2)\nprint(text[:3])     # Pyt (same - start defaults to 0)\nprint(text[3:])     # hon (from index 3 to end)\nprint(text[-1])     # n (last character)\nprint(text[-3:])    # hon (last 3 characters)\n\n# Practical example: extract area code from phone\nphone = "5551234567"\narea_code = phone[0:3]    # First 3 digits\nprefix = phone[3:6]       # Next 3 digits  \nline = phone[6:10]        # Last 4 digits\nprint(f"({area_code}) {prefix}-{line}")  # (555) 123-4567',
+            executable: true
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-1-strings-exercise',
+            title: 'Practice: String Manipulation'
           },
           {
             type: 'heading',
@@ -678,6 +781,82 @@ export const chapters: Chapter[] = [
         ]
       },
       {
+        id: 'tuples-sets',
+        title: 'Tuples and Sets',
+        estimatedTime: 15,
+        content: [
+          {
+            type: 'heading',
+            level: 1,
+            text: 'Tuples and Sets',
+            id: 'tuples-sets'
+          },
+          {
+            type: 'paragraph',
+            text: 'Besides lists and dictionaries, Python offers two more collection types: tuples (immutable sequences) and sets (unique values). Each has specific use cases in data analysis.'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Tuples - Immutable Sequences',
+            id: 'tuples'
+          },
+          {
+            type: 'paragraph',
+            text: 'Tuples are like lists, but they cannot be changed after creation. Use them for data that should stay constant, like coordinates or fixed records.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Creating tuples - use parentheses\ncoordinates = (10, 20)\nproduct_info = ("Widget Pro", 49.99, "Electronics")\n\nprint("Coordinates:", coordinates)\nprint("Product:", product_info)\n\n# Access by index (same as lists)\nprint("Name:", product_info[0])\nprint("Price:", product_info[1])',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Tuple unpacking - assign to multiple variables at once\nproduct = ("Laptop", 999.99, "Tech")\n\n# Unpack into separate variables\nname, price, category = product\n\nprint(f"Name: {name}")\nprint(f"Price: ${price}")\nprint(f"Category: {category}")\n\n# Useful for functions that return multiple values\ndef get_stats(numbers):\n    return min(numbers), max(numbers), sum(numbers)\n\nlow, high, total = get_stats([10, 20, 30, 40])\nprint(f"Low: {low}, High: {high}, Total: {total}")',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Sets - Unique Values Only',
+            id: 'sets'
+          },
+          {
+            type: 'paragraph',
+            text: 'Sets automatically remove duplicates and support mathematical set operations like union and intersection.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Creating sets - use curly braces or set()\nunique_categories = {"Electronics", "Clothing", "Food"}\n\n# Remove duplicates from a list\npurchases = ["Alice", "Bob", "Alice", "Carol", "Bob", "Alice"]\nunique_customers = set(purchases)\n\nprint("Purchases:", purchases)\nprint("Unique customers:", unique_customers)\nprint("Total unique:", len(unique_customers))',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Set operations - great for comparing groups\nq1_customers = {"Alice", "Bob", "Carol"}\nq2_customers = {"Bob", "Carol", "David", "Eve"}\n\n# Intersection: customers in BOTH quarters (returning)\nreturning = q1_customers & q2_customers\nprint("Returning customers:", returning)\n\n# Difference: customers in Q2 but NOT in Q1 (new)\nnew_customers = q2_customers - q1_customers\nprint("New in Q2:", new_customers)\n\n# Union: ALL customers from both quarters\nall_customers = q1_customers | q2_customers\nprint("All customers:", all_customers)',
+            executable: true
+          },
+          {
+            type: 'table',
+            headers: ['Type', 'Syntax', 'Mutable?', 'Duplicates?', 'Use Case'],
+            rows: [
+              ['List', '[1, 2, 3]', 'Yes', 'Allowed', 'Ordered collections'],
+              ['Tuple', '(1, 2, 3)', 'No', 'Allowed', 'Fixed data, unpacking'],
+              ['Set', '{1, 2, 3}', 'Yes', 'Not allowed', 'Unique values, comparisons'],
+              ['Dict', '{a: 1}', 'Yes', 'Keys unique', 'Key-value mapping']
+            ]
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-2-tuples-sets-exercise',
+            title: 'Practice: Tuples and Sets'
+          }
+        ]
+      },
+      {
         id: 'loops',
         title: 'Loops',
         estimatedTime: 25,
@@ -749,19 +928,84 @@ export const chapters: Chapter[] = [
           {
             type: 'code',
             language: 'python',
-            code: '# List comprehensions - concise loop syntax\nsales = [45000, 52000, 38000, 61000, 55000]\n\n# Traditional loop\nhigh_sales = []\nfor s in sales:\n    if s > 50000:\n        high_sales.append(s)\n\n# Same thing with list comprehension\nhigh_sales = [s for s in sales if s > 50000]\nprint("High sales months:", high_sales)\n\n# Apply transformation\n# Increase all sales by 10%\nadjusted = [s * 1.10 for s in sales]\nprint("After 10% increase:", adjusted)\n\n# Create formatted strings\nformatted = [str(s) for s in sales]\nprint("Formatted:", formatted)',
+            code: '# List comprehensions - concise loop syntax\nsales = [45000, 52000, 38000, 61000, 55000]\n\n# Traditional loop\nhigh_sales = []\nfor s in sales:\n    if s > 50000:\n        high_sales.append(s)\n\n# Same thing with list comprehension\nhigh_sales = [s for s in sales if s > 50000]\nprint("High sales months:", high_sales)\n\n# Apply transformation\n# Increase all sales by 10%\nadjusted = [s * 1.10 for s in sales]\nprint("After 10% increase:", adjusted)\n\n# Convert to thousands\nsales_in_k = [s / 1000 for s in sales]\nprint("In thousands:", sales_in_k)',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Conditional expressions in list comprehensions\nsales = [45000, 52000, 38000, 61000, 55000]\ntarget = 50000\n\n# if-else in comprehension (ternary expression)\n# Syntax: [value_if_true if condition else value_if_false for item in list]\ncategories = ["High" if s >= target else "Low" for s in sales]\nprint("Categories:", categories)\n\n# Calculate different bonuses based on performance\nbonuses = [s * 0.10 if s >= target else s * 0.05 for s in sales]\nprint("Bonuses:", bonuses)',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'The zip() Function',
+            id: 'zip'
+          },
+          {
+            type: 'paragraph',
+            text: 'zip() combines multiple lists element by element, like a zipper. Very useful when you have related data in separate lists.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# zip() pairs up elements from multiple lists\nregions = ["North", "South", "East", "West"]\nsales = [125000, 98000, 142000, 156000]\n\n# Combine into pairs for iteration\nprint("Regional Performance:")\nfor region, amount in zip(regions, sales):\n    print(f"  {region}: ${amount:,}")\n\n# Create a dictionary from two lists\nregion_sales = dict(zip(regions, sales))\nprint("\\nAs dictionary:", region_sales)',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# zip() with comprehensions - very powerful!\nregions = ["North", "South", "East", "West"]\nsales = [125000, 98000, 142000, 156000]\ntarget = 120000\n\n# Create dictionary with comprehension\nregion_dict = {r: s for r, s in zip(regions, sales)}\nprint("Sales dict:", region_dict)\n\n# Calculate bonuses for each region\nbonuses = {r: s * 0.10 if s >= target else s * 0.05 \n           for r, s in zip(regions, sales)}\nprint("Bonuses:", bonuses)',
+            executable: true
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Dictionary Comprehensions',
+            id: 'dict-comprehensions'
+          },
+          {
+            type: 'paragraph',
+            text: 'Just like list comprehensions, you can create dictionaries with concise syntax.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Dictionary comprehension syntax: {key: value for item in iterable}\nsales = [45000, 52000, 38000, 61000]\nmonths = ["Jan", "Feb", "Mar", "Apr"]\n\n# Create month: sales dictionary\nmonthly = {month: sale for month, sale in zip(months, sales)}\nprint("Monthly sales:", monthly)\n\n# Transform values\nmonthly_in_k = {month: sale / 1000 for month, sale in monthly.items()}\nprint("In thousands:", monthly_in_k)\n\n# Filter while creating\ntarget = 45000\nhigh_performers = {m: s for m, s in monthly.items() if s > target}\nprint("Above target:", high_performers)',
             executable: true
           },
           {
             type: 'callout',
             variant: 'tip',
-            title: 'List Comprehension Power',
-            content: 'List comprehensions are Pythonic and efficient. They\'re especially useful in data processing pipelines. Master them for cleaner, faster code!'
+            title: 'Comprehension Power',
+            content: 'List and dictionary comprehensions are Pythonic and efficient. They\'re especially useful in data processing pipelines. Master them for cleaner, faster code!'
+          },
+          {
+            type: 'heading',
+            level: 2,
+            text: 'Formatting Reports',
+            id: 'formatting-reports'
+          },
+          {
+            type: 'paragraph',
+            text: 'When generating reports, you often need formatting tricks. Here are some useful techniques.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# String multiplication - repeat a character\nprint("=" * 40)  # Print 40 equal signs\nprint("SALES REPORT".center(40))  # Center text in 40 chars\nprint("=" * 40)\n\n# Create formatted headers\nseparator = "-" * 30\nprint(separator)\nprint("Monthly Results")\nprint(separator)\n\n# Use in loops for clean reports\nfor region in ["North", "South", "East"]:\n    print(f"  Region: {region}")\nprint("-" * 30)',
+            executable: true
           },
           {
             type: 'exercise-link',
             exerciseId: 'chapter-2-loops-exercise',
             title: 'Practice: Sales Report Generator'
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-2-comprehensions-exercise',
+            title: 'Practice: Data Transformation with Comprehensions'
           }
         ]
       },
@@ -823,9 +1067,42 @@ export const chapters: Chapter[] = [
             content: 'Always include docstrings (the triple-quoted strings) in your functions. They document what the function does and help others (and future you) understand your code.'
           },
           {
+            type: 'heading',
+            level: 2,
+            text: 'f-string Number Formatting',
+            id: 'fstring-formatting'
+          },
+          {
+            type: 'paragraph',
+            text: 'When displaying numbers in reports, you often want to format them nicely. f-strings support powerful formatting options.'
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# f-string number formatting\ntotal = 1234567\naverage = 1234.5678\npercentage = 0.156\n\n# Add thousands separator with comma\nprint(f"Total: {total:,}")           # 1,234,567\nprint(f"Total: ${total:,}")          # $1,234,567\n\n# Control decimal places\nprint(f"Average: {average:.2f}")     # 1234.57 (2 decimals)\nprint(f"Average: {average:.1f}")     # 1234.6 (1 decimal)\n\n# Combine comma and decimals\nprint(f"Average: ${average:,.2f}")   # $1,234.57\n\n# Percentage formatting\nprint(f"Rate: {percentage:.1%}")     # 15.6% (auto multiply by 100)',
+            executable: true
+          },
+          {
+            type: 'code',
+            language: 'python',
+            code: '# Using formatting in reports\ndef print_summary(sales, costs):\n    """Print a formatted financial summary."""\n    profit = sales - costs\n    margin = (profit / sales) * 100\n    \n    print("=" * 35)\n    print("FINANCIAL SUMMARY".center(35))\n    print("=" * 35)\n    print(f"Sales:        ${sales:>12,}")\n    print(f"Costs:        ${costs:>12,}")\n    print(f"Profit:       ${profit:>12,}")\n    print(f"Margin:       {margin:>12.1f}%")\n    print("=" * 35)\n\nprint_summary(150000, 95000)',
+            executable: true
+          },
+          {
+            type: 'callout',
+            variant: 'tip',
+            title: 'Common Format Specifiers',
+            content: ':, = thousands separator | :.2f = 2 decimal places | :,.2f = both | :.1% = percentage | :>10 = right-align in 10 spaces'
+          },
+          {
+            type: 'exercise-link',
+            exerciseId: 'chapter-2-functions-exercise',
+            title: 'Practice: Build Sales Analytics Functions'
+          },
+          {
             type: 'exercise-link',
             exerciseId: 'chapter-2-exercise-1',
-            title: 'Practice: Build a Sales Analytics Module'
+            title: 'Practice: Build a Sales Analytics Module (Advanced)'
           },
           {
             type: 'quiz-link',
