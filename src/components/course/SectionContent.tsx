@@ -27,6 +27,7 @@ export function SectionContent({ section, chapterId, onSectionComplete }: Sectio
       key={index}
       block={block}
       chapterId={chapterId}
+      sectionId={section.id}
       index={index}
     />
   );
@@ -74,6 +75,7 @@ export function SectionContent({ section, chapterId, onSectionComplete }: Sectio
               key={index}
               block={block}
               chapterId={chapterId}
+              sectionId={section.id}
               index={index}
             />
           ))}
@@ -86,10 +88,11 @@ export function SectionContent({ section, chapterId, onSectionComplete }: Sectio
 interface ContentBlockRendererProps {
   block: ContentBlock;
   chapterId: number;
+  sectionId: string;
   index: number;
 }
 
-function ContentBlockRenderer({ block, chapterId, index }: ContentBlockRendererProps) {
+function ContentBlockRenderer({ block, chapterId, sectionId, index }: ContentBlockRendererProps) {
   const animationDelay = `${Math.min(index * 50, 300)}ms`;
 
   switch (block.type) {
@@ -194,6 +197,7 @@ function ContentBlockRenderer({ block, chapterId, index }: ContentBlockRendererP
         <div className="my-8 animate-fadeIn" style={{ animationDelay }}>
           <SectionNavBlock
             chapterId={chapterId}
+            sectionId={sectionId}
             showComplete={block.showComplete}
             showNext={block.showNext}
             showBack={block.showBack}
@@ -570,6 +574,7 @@ function MiniQuizBlock({ id: _id, question, options, correctAnswer, explanation 
 // Section Navigation component
 interface SectionNavBlockProps {
   chapterId: number;
+  sectionId: string;
   showComplete?: boolean;
   showNext?: boolean;
   showBack?: boolean;
@@ -577,14 +582,21 @@ interface SectionNavBlockProps {
   prevSection?: string;
 }
 
-function SectionNavBlock({ chapterId, showComplete = true, showNext = true, showBack = true, nextSection, prevSection }: SectionNavBlockProps) {
+function SectionNavBlock({ chapterId, sectionId, showComplete = true, showNext = true, showBack = true, nextSection, prevSection }: SectionNavBlockProps) {
   const navigate = useNavigate();
-  const { markSectionComplete } = useProgressStore();
-  const [isMarkedComplete, setIsMarkedComplete] = useState(false);
+  const { markSectionComplete, completedSections } = useProgressStore();
+
+  // Check if already completed from store
+  const sectionKey = `${chapterId}-${sectionId}`;
+  const isAlreadyCompleted = completedSections[sectionKey] || false;
+  const [isMarkedComplete, setIsMarkedComplete] = useState(isAlreadyCompleted);
 
   const handleMarkComplete = () => {
-    // Mark current section complete
-    setIsMarkedComplete(true);
+    if (!isMarkedComplete) {
+      // Mark in store (this syncs to cloud)
+      markSectionComplete(chapterId, sectionId);
+      setIsMarkedComplete(true);
+    }
   };
 
   const handleNext = () => {
